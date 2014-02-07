@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaladinPharmacyCOMv1", "PaladinPharmacyCOMv1\PaladinPharmacyCOMv1.csproj", "{48194664-7B8D-432A-967B-75202D46CE6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{9BE42905-1CFC-4630-988B-5BE4F2B44716}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaladinPharmacyCOMv1.Models", "PaladinPharmacyCOMv1.Models\PaladinPharmacyCOMv1.Models.csproj", "{C09493F0-AEFB-4377-A173-5403CA783673}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaladinPharmacyCOMv1.Example", "Samples\PaladinPharmacyCOMv1.Example\PaladinPharmacyCOMv1.Example.csproj", "{1F7B9FDB-4C72-448E-B020-A42276E087E1}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://devtfs2010.paladin.local:8080/tfs/paladin
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PaladinPharmacyCOMv1\\PaladinPharmacyCOMv1.csproj
+		SccProjectName1 = PaladinPharmacyCOMv1
+		SccLocalPath1 = PaladinPharmacyCOMv1
+		SccProjectUniqueName2 = PaladinPharmacyCOMv1.Models\\PaladinPharmacyCOMv1.Models.csproj
+		SccProjectName2 = PaladinPharmacyCOMv1.Models
+		SccLocalPath2 = PaladinPharmacyCOMv1.Models
+		SccProjectUniqueName3 = Samples\\PaladinPharmacyCOMv1.Example\\PaladinPharmacyCOMv1.Example.csproj
+		SccProjectTopLevelParentUniqueName3 = PaladinPharmacyCOMv1.sln
+		SccProjectName3 = Samples/PaladinPharmacyCOMv1.Example
+		SccLocalPath3 = Samples\\PaladinPharmacyCOMv1.Example
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48194664-7B8D-432A-967B-75202D46CE6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48194664-7B8D-432A-967B-75202D46CE6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48194664-7B8D-432A-967B-75202D46CE6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48194664-7B8D-432A-967B-75202D46CE6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C09493F0-AEFB-4377-A173-5403CA783673}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C09493F0-AEFB-4377-A173-5403CA783673}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C09493F0-AEFB-4377-A173-5403CA783673}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C09493F0-AEFB-4377-A173-5403CA783673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F7B9FDB-4C72-448E-B020-A42276E087E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F7B9FDB-4C72-448E-B020-A42276E087E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F7B9FDB-4C72-448E-B020-A42276E087E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F7B9FDB-4C72-448E-B020-A42276E087E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1F7B9FDB-4C72-448E-B020-A42276E087E1} = {9BE42905-1CFC-4630-988B-5BE4F2B44716}
+	EndGlobalSection
+	GlobalSection(TextTemplating) = postSolution
+		TextTemplating = 1
+	EndGlobalSection
+EndGlobal
