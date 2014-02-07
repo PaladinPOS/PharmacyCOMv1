@@ -11,23 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaladinPharmacyCOMv1.Models
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaladinPharmacyCOMv1.Example", "Samples\PaladinPharmacyCOMv1.Example\PaladinPharmacyCOMv1.Example.csproj", "{1F7B9FDB-4C72-448E-B020-A42276E087E1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{59437623-09F4-47B5-A441-6C8E33B31D82}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://devtfs2010.paladin.local:8080/tfs/paladin
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = PaladinPharmacyCOMv1\\PaladinPharmacyCOMv1.csproj
-		SccProjectName1 = PaladinPharmacyCOMv1
-		SccLocalPath1 = PaladinPharmacyCOMv1
-		SccProjectUniqueName2 = PaladinPharmacyCOMv1.Models\\PaladinPharmacyCOMv1.Models.csproj
-		SccProjectName2 = PaladinPharmacyCOMv1.Models
-		SccLocalPath2 = PaladinPharmacyCOMv1.Models
-		SccProjectUniqueName3 = Samples\\PaladinPharmacyCOMv1.Example\\PaladinPharmacyCOMv1.Example.csproj
-		SccProjectTopLevelParentUniqueName3 = PaladinPharmacyCOMv1.sln
-		SccProjectName3 = Samples/PaladinPharmacyCOMv1.Example
-		SccLocalPath3 = Samples\\PaladinPharmacyCOMv1.Example
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
