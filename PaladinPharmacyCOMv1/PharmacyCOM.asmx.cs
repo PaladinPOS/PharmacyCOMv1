@@ -7,7 +7,7 @@ using System.Web.Services.Protocols;
 using System.ComponentModel;
 using PaladinPharmacyCOMv1.Models;
 
-namespace PaladinPharmacyCOMv1.Example
+namespace PaladinPharmacyCOMv1
 {
     /// <summary>
     /// Pharmacy Communication interface for Paladin POS.
