@@ -43,5 +43,6 @@ namespace PaladinPharmacyCOMv1.Models
         public bool? FlexItem { get; set; }
         public int? StoreId { get; set; }
         public int? Categories { get; set; }
+        public bool? RxItem { get; set; }
     }
 }

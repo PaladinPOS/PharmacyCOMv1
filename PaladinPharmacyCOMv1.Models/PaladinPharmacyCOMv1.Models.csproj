@@ -47,6 +47,7 @@
     <Compile Include="Invoice.cs" />
     <Compile Include="InvoiceItem.cs" />
     <Compile Include="InvoicePayment.cs" />
+    <Compile Include="InvoiceRxItemFlag.cs" />
     <Compile Include="InvoiceTax.cs" />
     <Compile Include="InvoiceText.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
