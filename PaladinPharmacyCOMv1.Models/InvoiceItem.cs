@@ -13,7 +13,7 @@ namespace PaladinPharmacyCOMv1.Models
         public string PartNumber { get; set; }
         public string Description { get; set; }
         public string PrimaryNumber { get; set; }
-        public int? DeptartmentId { get; set; }
+        public int? DepartmentId { get; set; }
         public decimal? QuantitySold { get; set; }
         public decimal? ReorderQuantity { get; set; }
         public decimal? RetailPrice { get; set; }
