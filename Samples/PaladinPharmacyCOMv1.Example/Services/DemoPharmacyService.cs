@@ -130,6 +130,7 @@ namespace PaladinPharmacyCOMv1.Example.Services
             response.CustomerId = customerId;
             response.AvailableCredit = Math.Round(Convert.ToDecimal(random.Next(500) + random.NextDouble()), 2);
             response.Message = "success";
+            response.AccountBalance = 999.99m;
 
             return response;
         }
