@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaladinPharmacyCOMv1", "PaladinPharmacyCOMv1\PaladinPharmacyCOMv1.csproj", "{48194664-7B8D-432A-967B-75202D46CE6B}"
 EndProject
@@ -14,7 +14,17 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{59437623-09F4-47B5-A441-6C8E33B31D82}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
+		PharmacyCOM.wsdl = PharmacyCOM.wsdl
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{B156035E-A371-4839-8495-34B1F74B67D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WSDLGenerator", "WSDLGenerator", "{173F42BB-01A3-4F89-920F-75B144B61567}"
+	ProjectSection(SolutionItems) = preProject
+		Tools\WSDLGenerator\License.txt = Tools\WSDLGenerator\License.txt
+		Tools\WSDLGenerator\Readme.txt = Tools\WSDLGenerator\Readme.txt
+		Tools\WSDLGenerator\WSDLGenerator.exe = Tools\WSDLGenerator\WSDLGenerator.exe
 	EndProjectSection
 EndProject
 Global
@@ -41,6 +51,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1F7B9FDB-4C72-448E-B020-A42276E087E1} = {9BE42905-1CFC-4630-988B-5BE4F2B44716}
+		{173F42BB-01A3-4F89-920F-75B144B61567} = {B156035E-A371-4839-8495-34B1F74B67D0}
 	EndGlobalSection
 	GlobalSection(TextTemplating) = postSolution
 		TextTemplating = 1

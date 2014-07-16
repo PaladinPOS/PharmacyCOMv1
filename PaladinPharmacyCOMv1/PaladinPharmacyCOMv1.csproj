@@ -117,4 +117,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)Tools\WSDLGenerator\WSDLGenerator.exe -i $(TargetPath) -o $(SolutionDir) -w</PostBuildEvent>
+  </PropertyGroup>
 </Project>

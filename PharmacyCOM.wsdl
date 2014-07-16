@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://services.paladinpos.com/PaladinPharmacyCOMv1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://services.paladinpos.com/PaladinPharmacyCOMv1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://services.paladinpos.com/PaladinPharmacyCOMv1">
+      <s:element name="GetRxItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rxNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRxItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRxItemResult" type="tns:RxItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RxItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RxNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RxValid" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerFName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerMName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerLName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxPatientID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerPhone1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerRegAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerRegAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerRegCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerRegState" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerRegZIP" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RxAmountDue" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="RxTaxable" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxMessages" type="tns:ArrayOfRxMessage" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxItemFlags" type="tns:ArrayOfRxItemFlag" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRxMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RxMessage" nillable="true" type="tns:RxMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RxMessage">
+        <s:attribute name="Message" type="s:string" />
+        <s:attribute name="Print" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfRxItemFlag">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RxItemFlag" nillable="true" type="tns:RxItemFlag" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RxItemFlag">
+        <s:attribute name="Type" type="s:int" use="required" />
+        <s:attribute name="Message" type="s:string" />
+        <s:attribute name="Required" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:element name="SaveRxInvoice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rxInvoice" type="tns:RxInvoice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RxInvoice">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RxInvoiceNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RxInvoiceDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="RxSubTotal" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="RxTaxTotal" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="RxTotal" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxItems" type="tns:ArrayOfRxItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxPayments" type="tns:ArrayOfRxPayment" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxItemFlagResults" type="tns:ArrayOfRxItemFlagResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRxItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RxItem" nillable="true" type="tns:RxItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRxPayment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RxPayment" nillable="true" type="tns:RxPayment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RxPayment">
+        <s:attribute name="Type" type="s:int" use="required" />
+        <s:attribute name="Amount" type="s:decimal" use="required" />
+        <s:attribute name="Message" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfRxItemFlagResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RxItemFlagResult" nillable="true" type="tns:RxItemFlagResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RxItemFlagResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Signature" type="s:base64Binary" />
+        </s:sequence>
+        <s:attribute name="CustomerName" type="s:string" />
+        <s:attribute name="Type" type="s:int" use="required" />
+        <s:attribute name="Accepted" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:element name="SaveRxInvoiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaveRxInvoiceResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableCredit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="customerId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableCreditResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAvailableCreditResult" type="tns:AvailableCreditResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AvailableCreditResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsValid" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AvailableCredit" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountBalance" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveInvoice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoice" type="tns:Invoice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Invoice">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Deleted" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Number" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PharmacyAccountNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountTracker" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TerminalNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmployeeNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PurchaseOrderNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Total" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Profit" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PromptPaymentDiscount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="GlobalTax" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="GlobalNet" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="GlobalDefective" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultTaxOverride" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InvoiceType" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Signature" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expansion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FlexTotal" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="StoreId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerRewardNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Categories" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceItems" type="tns:ArrayOfInvoiceItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceText" type="tns:ArrayOfInvoiceText" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoicePayments" type="tns:ArrayOfInvoicePayment" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceTaxes" type="tns:ArrayOfInvoiceTax" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceRxItemFlags" type="tns:ArrayOfInvoiceRxItemFlag" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoiceItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoiceItem" nillable="true" type="tns:InvoiceItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoiceItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="InvoiceId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LineNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InventoryId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="PartNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrimaryNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DepartmentId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="QuantitySold" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReorderQuantity" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="RetailPrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SellPrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SoldPrice" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SellThreshold" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Taxable" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Net" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Defective" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LineExt" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PromptPaymentDiscount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Profit" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CostPerUnit" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CostLineExt" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PriceType" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PricingPlanId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SaleId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SupplierId1" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SupplierId2" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClassId1" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubclassId1" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClassId2" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubclassId2" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClassId3" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubclassId3" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expansion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FlexItem" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="StoreId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Categories" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RxItem" nillable="true" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoiceText">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoiceText" nillable="true" type="tns:InvoiceText" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoiceText">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="InvoiceId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LineNumber" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Categories" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expansion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoicePayment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoicePayment" nillable="true" type="tns:InvoicePayment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoicePayment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="InvoiceId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LineNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SaleId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Categories" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expansion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoiceTax">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoiceTax" nillable="true" type="tns:InvoiceTax" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoiceTax">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InvoiceId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Rate" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Categories" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expansion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoiceRxItemFlag">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoiceRxItemFlag" nillable="true" type="tns:InvoiceRxItemFlag" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoiceRxItemFlag">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Accepted" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Signature" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveInvoiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaveInvoiceResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetRxItemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRxItem" />
+  </wsdl:message>
+  <wsdl:message name="GetRxItemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRxItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveRxInvoiceSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveRxInvoice" />
+  </wsdl:message>
+  <wsdl:message name="SaveRxInvoiceSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveRxInvoiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableCreditSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAvailableCredit" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableCreditSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAvailableCreditResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveInvoiceSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveInvoice" />
+  </wsdl:message>
+  <wsdl:message name="SaveInvoiceSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveInvoiceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PharmacyCOMSoap">
+    <wsdl:operation name="GetRxItem">
+      <wsdl:input message="tns:GetRxItemSoapIn" />
+      <wsdl:output message="tns:GetRxItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveRxInvoice">
+      <wsdl:input message="tns:SaveRxInvoiceSoapIn" />
+      <wsdl:output message="tns:SaveRxInvoiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableCredit">
+      <wsdl:input message="tns:GetAvailableCreditSoapIn" />
+      <wsdl:output message="tns:GetAvailableCreditSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveInvoice">
+      <wsdl:input message="tns:SaveInvoiceSoapIn" />
+      <wsdl:output message="tns:SaveInvoiceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PharmacyCOMSoap" type="tns:PharmacyCOMSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRxItem">
+      <soap:operation soapAction="http://services.paladinpos.com/PaladinPharmacyCOMv1/GetRxItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveRxInvoice">
+      <soap:operation soapAction="http://services.paladinpos.com/PaladinPharmacyCOMv1/SaveRxInvoice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableCredit">
+      <soap:operation soapAction="http://services.paladinpos.com/PaladinPharmacyCOMv1/GetAvailableCredit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveInvoice">
+      <soap:operation soapAction="http://services.paladinpos.com/PaladinPharmacyCOMv1/SaveInvoice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PharmacyCOMSoap12" type="tns:PharmacyCOMSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRxItem">
+      <soap12:operation soapAction="http://services.paladinpos.com/PaladinPharmacyCOMv1/GetRxItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveRxInvoice">
+      <soap12:operation soapAction="http://services.paladinpos.com/PaladinPharmacyCOMv1/SaveRxInvoice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableCredit">
+      <soap12:operation soapAction="http://services.paladinpos.com/PaladinPharmacyCOMv1/GetAvailableCredit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveInvoice">
+      <soap12:operation soapAction="http://services.paladinpos.com/PaladinPharmacyCOMv1/SaveInvoice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PharmacyCOM">
+    <wsdl:port name="PharmacyCOMSoap" binding="tns:PharmacyCOMSoap">
+      <soap:address location="http://localhost/PharmacyCOM.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PharmacyCOMSoap12" binding="tns:PharmacyCOMSoap12">
+      <soap12:address location="http://localhost/PharmacyCOM.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
