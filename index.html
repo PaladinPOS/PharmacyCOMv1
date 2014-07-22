@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="PharmacyCOMv1 : PaladinPOS Pharmacy Communication Integration Definition" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>PharmacyCOMv1</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/PaladinPOS/PharmacyCOMv1">View on GitHub</a>
+
+          <h1 id="project_title">PharmacyCOMv1</h1>
+          <h2 id="project_tagline">PaladinPOS Pharmacy Communication Integration Definition</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/PaladinPOS/PharmacyCOMv1/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/PaladinPOS/PharmacyCOMv1/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>ABOUT</h1>
+
+<p>Paladin Data Corporation is providing a way for pharmacy systems to communicate with the Paladin POS system. This will enable pharmacy systems to utilize the PaladinPOS GUI front end while retaining their current system and business function. </p>
+
+<p>Pharmacy systems just need to implement a simple SOAP-based webservice in order to allow PaladinPOS to communicate with your system. </p>
+
+<h1>
+<a name="webservice-methods" class="anchor" href="#webservice-methods"><span class="octicon octicon-link"></span></a>WEBSERVICE METHODS</h1>
+
+<p>The webservice should provide four methods to Paladin POS.</p>
+
+<ul>
+<li>GetRxItem(rxNumber) – Allows Paladin POS to query the pharmacy system for a specific Rx numbers.</li>
+<li>SaveRxInvoice(rxInvoice) – Allows Paladin POS to inform the pharmacy system of the sale of specific RxItems.</li>
+<li>GetAvailableCredit(customerId) – Allows Paladin POS to query the pharmacy system for a specific customer id, returning the amount of available credit the customer has available as well as the total account balance for the account. </li>
+<li>SaveInvoice(invoice) – Allows PaladinPOS to send an entire invoice to the pharmacy system. Invoice contains all from paladin system. Invoice is sent regardless of any pharmacy items are on the invoice. </li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">PharmacyCOMv1 maintained by <a href="https://github.com/PaladinPOS">PaladinPOS</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
