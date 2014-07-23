@@ -91,18 +91,18 @@ Pharmacy systems just need to implement a simple SOAP-based webservice in order 
 
 <ul>
 <li>  RxNumber - The original Rx Number that was passed into the webservice call</li>
-<li>  RxValid - Set to “true”.</li>
-<li>  RxCustomerName - Full name of customer on prescription.</li>
-<li>  RxCustomerFName - Customer first name (optional)</li>
-<li>  RxCustomerMName - Customer middle name (optional)</li>
-<li>  RxCustomerLName - Customer last name (optional)</li>
-<li>  RxPatientID - Customer ID from pharmacy system (optional)</li>
-<li>  RxCustomerPhone1 - Customer phone number (optional)</li>
-<li>  RxCustomerRegAddress1 - Customer address line 1 (optional)</li>
-<li>  RxCustomerRegAddress2 - Customer address line 2 (optional)</li>
-<li>  RxCustomerRegCity - Customer city (optional)</li>
-<li>  RxCustomerRegState - Customer state (optional)</li>
-<li>  RxCustomerRegZIP - Customer zip (optional)</li>
+<li>  RxValid - Set to “true”</li>
+<li>  RxCustomerName - Full name of customer on prescription</li>
+<li>  RxCustomerFName - <em>optional</em> - Customer first name</li>
+<li>  RxCustomerMName - <em>optional</em> - Customer middle name</li>
+<li>  RxCustomerLName - <em>optional</em> - Customer last name</li>
+<li>  RxPatientID - <em>optional</em> - Customer ID from pharmacy system</li>
+<li>  RxCustomerPhone1 - <em>optional</em> - Customer phone number</li>
+<li>  RxCustomerRegAddress1 - <em>optional</em> - Customer address line 1</li>
+<li>  RxCustomerRegAddress2 - <em>optional</em> - Customer address line 2</li>
+<li>  RxCustomerRegCity - <em>optional</em> - Customer city</li>
+<li>  RxCustomerRegState - <em>optional</em> - Customer state</li>
+<li>  RxCustomerRegZIP - <em>optional</em> - Customer zip</li>
 <li>  RxAmountDue - Total price to charge customer for item.</li>
 <li>  RxTaxable - Charge tax for this item. “true” or “false”.</li>
 <li>  RxMessages - Containing any number of RxMessage entries.
@@ -157,22 +157,37 @@ Pharmacy systems just need to implement a simple SOAP-based webservice in order 
 An RxInvoice contains the following values:</p>
 
 <ul>
-<li>RxInvoiceNumber - Invoice number from Paladin POS.</li>
-<li>RxInvoiceDate - Date and time of the invoice transaction.</li>
-<li>RxSubTotal - Subtotal of all items on the invoice. (Value can include non-pharmacy items)</li>
-<li>RxTaxTotal - Amount of tax changed on the invoice items. (Value can include non-pharmacy items)</li>
-<li>RxTotal - Total amount changed on the invoice. (SubTotal + TaxTotal)</li>
-<li>RxItems - Containing any number of RxItem entries.
+<li>RxInvoiceNumber - Invoice number from Paladin POS</li>
+<li>RxInvoiceDate - Date and time of the invoice transaction</li>
+<li>RxSubTotal - Subtotal of all items on the invoice
 
 <ul>
-<li>RxNumber - Rx Number on invoice.</li>
-<li>RxValid - Set to “true”.</li>
-<li>RxCustomerName - Name of customer.</li>
-<li>RxAmountDue - Amount collected for item.</li>
+<li><em>Note: Value can include non-pharmacy items</em></li>
+</ul>
+</li>
+<li>RxTaxTotal - Amount of tax changed on the invoice items
+
+<ul>
+<li><em>Note: Value can include non-pharmacy items</em></li>
+</ul>
+</li>
+<li>RxTotal - Total amount changed on the invoice. 
+
+<ul>
+<li>_Note: Value is same as RxSubTotal + RxTaxTotal</li>
+</ul>
+</li>
+<li>RxItems - Containing any number of RxItem entries
+
+<ul>
+<li>RxNumber - Rx Number on invoice</li>
+<li>RxValid - Set to “true”</li>
+<li>RxCustomerName - Name of customer</li>
+<li>RxAmountDue - Amount collected for item</li>
 <li><strong><em>All other elements should be ignored or empty</em></strong></li>
 </ul>
 </li>
-<li>RxPayments - Containing any number of RxPayment entries.
+<li>RxPayments - Containing any number of RxPayment entries
 
 <ul>
 <li>Type - <em>Attribute</em> - Type of invoice payment. Values:
@@ -202,7 +217,7 @@ An RxInvoice contains the following values:</p>
 <li>Message - <em>Attribute</em> - Additional payment type information/notes</li>
 </ul>
 </li>
-<li>RxItemFlagResults - Containing any number of RxItemFlagResult entries.
+<li>RxItemFlagResults - Containing any number of RxItemFlagResult entries
 
 <ul>
 <li>CustomerName - <em>Attribute</em> - Name of customer flag applied to</li>
@@ -210,7 +225,7 @@ An RxInvoice contains the following values:</p>
 <li>Accepted - <em>Attribute</em> - Accepted by customer, “true” or “false”</li>
 </ul>
 </li>
-<li>Signature - Base64 encoding of JPEG signature. If not accepted, element will be empty/missing.</li>
+<li>Signature - Base64 encoding of JPEG signature. If not accepted, element will be empty/missing</li>
 </ul><h4>
 <a name="example--rxinvoice" class="anchor" href="#example--rxinvoice"><span class="octicon octicon-link"></span></a>Example – RxInvoice</h4>
 
@@ -259,6 +274,76 @@ An RxInvoice contains the following values:</p>
 </pre></div>
 
 <p><strong><em>Signature values shortened for example</em></strong></p>
+
+<h2>
+<a name="getavailablecredit-method" class="anchor" href="#getavailablecredit-method"><span class="octicon octicon-link"></span></a>GetAvailableCredit Method</h2>
+
+<p><strong><em>Note: Added v1.04. 
+Method is only called when option “Enable Customer Available Credit” is enabled within Paladin POS. This option disables AR in Paladin POS to be managed solely by the pharmacy system.</em></strong></p>
+
+<p>When an invoice customer is changed within the system, a request for that customer’s available credit will be made. The response from the pharmacy system will determine if a customer can charge to their store credit account maintained by the pharmacy system.</p>
+
+<h3>
+<a name="getavailablecredit-request" class="anchor" href="#getavailablecredit-request"><span class="octicon octicon-link"></span></a>GetAvailableCredit Request</h3>
+
+<p>When enabled, Paladin POS will call GetAvailableCredit on pharmacy system using the customer’s pharmacy system id.</p>
+
+<h4>
+<a name="example---getavailablecredit-request" class="anchor" href="#example---getavailablecredit-request"><span class="octicon octicon-link"></span></a>Example - GetAvailableCredit Request</h4>
+
+<div class="highlight highlight-xml"><pre><span class="nt">&lt;GetAvailableCredit</span> <span class="na">xmlns=</span><span class="s">"http://services.paladinpos.com/PaladinPharmacyCOMv1"</span><span class="nt">&gt;</span> 
+  <span class="nt">&lt;customerId&gt;</span>111222333444555666<span class="nt">&lt;/customerId&gt;</span> 
+<span class="nt">&lt;/GetAvailableCredit&gt;</span>
+</pre></div>
+
+<h3>
+<a name="getavailablecredit-response" class="anchor" href="#getavailablecredit-response"><span class="octicon octicon-link"></span></a>GetAvailableCredit Response</h3>
+
+<p>The pharmacy system should return a AvailableCreditResponse message back to Paladin POS. The response from the pharmacy should specify if the customer lookup was successful and/or if the customer has any credit to allow charging locally.
+As of version 1.05, the available credit response also returns the account balance to allow paladin to display current account information and accept payment on customer accounts on behalf of the pharmacy system.</p>
+
+<p>The AvailableCreditResponse message contains: </p>
+
+<ul>
+<li>CustomerId - The customer id found in the pharmacy system, should match value sent in the original request</li>
+<li>IsValid - “true” or “false”, valid customer found by the pharmacy system</li>
+<li>Message - Any messages/errors returned by the pharmacy system</li>
+<li>AvailableCredit - Customer available credit in pharmacy system
+
+<ul>
+<li><em>Note: AvailableCredit must be greater than zero to allow Paladin POS to charge to their accounts</em></li>
+<li><em>Note: Paladin POS will only allow customers to charge up to the maximum value specified by AvailableCredit</em></li>
+</ul>
+</li>
+<li>AccountBalance - <strong><em>Added v.1.05</em></strong> -  Customer total account balance owed 
+
+<ul>
+<li><em>Note: If account has a credit balance, AccountBalance should be return a negative value</em></li>
+</ul>
+</li>
+</ul><h4>
+<a name="example--availablecreditresponse-invalid" class="anchor" href="#example--availablecreditresponse-invalid"><span class="octicon octicon-link"></span></a>Example – AvailableCreditResponse Invalid</h4>
+
+<div class="highlight highlight-xml"><pre><span class="nt">&lt;AvailableCreditResponse&gt;</span> 
+  <span class="nt">&lt;CustomerId&gt;</span>111222333444555666<span class="nt">&lt;/CustomerId&gt;</span> 
+  <span class="nt">&lt;IsValid&gt;</span>false<span class="nt">&lt;/IsValid&gt;</span> 
+  <span class="nt">&lt;Message&gt;</span>Customer not found<span class="nt">&lt;/Message&gt;</span> 
+  <span class="nt">&lt;AvailableCredit&gt;</span>0<span class="nt">&lt;/AvailableCredit&gt;</span> 
+  <span class="nt">&lt;AccountBalance&gt;</span>0<span class="nt">&lt;/AccountBalance&gt;</span> 
+<span class="nt">&lt;/AvailableCreditResponse&gt;</span> 
+</pre></div>
+
+<h4>
+<a name="example--availablecreditresponse-valid" class="anchor" href="#example--availablecreditresponse-valid"><span class="octicon octicon-link"></span></a>Example – AvailableCreditResponse Valid</h4>
+
+<div class="highlight highlight-xml"><pre><span class="nt">&lt;AvailableCreditResponse&gt;</span> 
+  <span class="nt">&lt;CustomerId&gt;</span>111222333444555666<span class="nt">&lt;/CustomerId&gt;</span> 
+  <span class="nt">&lt;IsValid&gt;</span>true<span class="nt">&lt;/IsValid&gt;</span> 
+  <span class="nt">&lt;Message&gt;</span>success<span class="nt">&lt;/Message&gt;</span> 
+  <span class="nt">&lt;AvailableCredit&gt;</span>213.35<span class="nt">&lt;/AvailableCredit&gt;</span> 
+  <span class="nt">&lt;AccountBalance&gt;</span>100.00<span class="nt">&lt;/AccountBalance&gt;</span> 
+<span class="nt">&lt;/AvailableCreditResponse&gt;</span> 
+</pre></div>
       </section>
     </div>
 
