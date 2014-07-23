@@ -154,7 +154,7 @@ Pharmacy systems just need to implement a simple SOAP-based webservice in order 
 <a name="saverxinvoice-method" class="anchor" href="#saverxinvoice-method"><span class="octicon octicon-link"></span></a>SaveRxInvoice Method</h2>
 
 <p>When an invoice is completed in Paladin POS that contains RxItems, Paladin POS will return an RxInvoice containing basic invoice details as well as all of the RxItems that were sold as part of the transaction. 
-An RxInvoice contains the following values:</p>
+A RxInvoice contains the following values:</p>
 
 <ul>
 <li>RxInvoiceNumber - Invoice number from Paladin POS</li>
@@ -278,7 +278,7 @@ An RxInvoice contains the following values:</p>
 <h2>
 <a name="getavailablecredit-method" class="anchor" href="#getavailablecredit-method"><span class="octicon octicon-link"></span></a>GetAvailableCredit Method</h2>
 
-<p><strong><em>Note: Added v1.04. 
+<p><strong><em>Note: Added v1.03. 
 Method is only called when option “Enable Customer Available Credit” is enabled within Paladin POS. This option disables AR in Paladin POS to be managed solely by the pharmacy system.</em></strong></p>
 
 <p>When an invoice customer is changed within the system, a request for that customer’s available credit will be made. The response from the pharmacy system will determine if a customer can charge to their store credit account maintained by the pharmacy system.</p>
@@ -344,6 +344,293 @@ As of version 1.05, the available credit response also returns the account balan
   <span class="nt">&lt;AccountBalance&gt;</span>100.00<span class="nt">&lt;/AccountBalance&gt;</span> 
 <span class="nt">&lt;/AvailableCreditResponse&gt;</span> 
 </pre></div>
+
+<h2>
+<a name="saveinvoice-method" class="anchor" href="#saveinvoice-method"><span class="octicon octicon-link"></span></a>SaveInvoice Method</h2>
+
+<p>**_Note: Added v1.03. 
+This method is only called when option “Enable Send Full Invoice” is enabled within Paladin. This options disables PaladinPOS calls to SaveRxInvoice, and sends all invoices processed be the pharmacy system.</p>
+
+<p>When an invoice is processed by Paladin POS, the entire invoice will be sent to the Pharmacy System. This should only be used if the pharmacy system is used as the primary system for AR.</p>
+
+<p>An Invoice contains the following fields:</p>
+
+<ul>
+<li>Id - int - Paladin Invoice Id</li>
+<li>Deleted - bool/empty - Invoice deleted status</li>
+<li>Number - int/empty - Alternate invoice number</li>
+<li>Date - date/empty - Invoice date</li>
+<li>AccountNumber - int/empty - Paladin customer id</li>
+<li>AccountName - string - Customer account name</li>
+<li>PharmacyAccountNumber - string - Pharmacy customer id </li>
+<li>AccountTracker - int/empty</li>
+<li>TerminalNumber - int/empty - Paladin terminal number</li>
+<li>EmployeeNumber - int/empty - Paladin Employee id</li>
+<li>PurchaseOrderNumber - string/empty - Purchase order number</li>
+<li>Total - decimal/empty - Invoice total amount</li>
+<li>Profit - decimal/empty - Invoice profit amount</li>
+<li>PromptPaymentDiscount - decimal/empty</li>
+<li>GlobalTax - bool/empty - Invoice global tax flag status</li>
+<li>GlobalNet - bool/empty - Invoice global net flag status</li>
+<li>GlobalDefective - bool/empty - Invoice global defective flag status</li>
+<li>DefaultTaxOverride - bool/empty - Invoice default tax override flag status</li>
+<li>InvoiceType - int/empty - Invoice Type</li>
+<li>Signature – byte[]/empty - Default invoice signature. Base64 encoding of JPEG signature. If no signature, element will be empty/missing</li>
+<li>Expansion - string/empty</li>
+<li>FlexTotal - decimal/empty - Invoice flex eligible item total amount</li>
+<li>StoreId - int/empty - Invoice store id</li>
+<li>CustomerRewardNumber - string/empty - Customer rewards number</li>
+<li>Categories - int/empty</li>
+<li>InvoiceItems - array - List all InvoiceItem items on invoice
+
+<ul>
+<li>InvoiceId – int – </li>
+<li>LineNumber – int – Invoice line number</li>
+<li>InventoryId – int/empty – </li>
+<li>Date – datetime/empty – </li>
+<li>PartNumber – string/empty – </li>
+<li>Description – string/empty –</li>
+<li>PrimaryNumber – string/empty –</li>
+<li>DepartmentId – int/empty –</li>
+<li>QuantitySold – decimal/empty – </li>
+<li>ReorderQuantity – decimal/empty –</li>
+<li>RetailPrice – decimal/empty –</li>
+<li>SellPrice – decimal/empty –</li>
+<li>SoldPrice – decimal/empty –</li>
+<li>SellThreshold – int/empty –</li>
+<li>Taxable – bool/empty –</li>
+<li>Net – bool/empty –</li>
+<li>Defective – bool/empty –</li>
+<li>LineExt – decimal/empty –</li>
+<li>PromptPaymentDiscount – decimal/empty –</li>
+<li>Profit – decimal/empty –</li>
+<li>CostPerUnit – decimal/empty –</li>
+<li>CostLineExt – decimal/empty –</li>
+<li>PriceType – int/empty –</li>
+<li>PricingPlanId – int/empty –</li>
+<li>SaleId – int/empty –</li>
+<li>SupplierId1 – int/empty –</li>
+<li>SupplierId2 – int/empty –</li>
+<li>ClassId1 – int/empty –</li>
+<li>SubclassId1 – int/empty –</li>
+<li>ClassId2 – int/empty –</li>
+<li>SubclassId2 – int/empty –</li>
+<li>ClassId3 – int/empty –</li>
+<li>SubclassId3 – int/empty –</li>
+<li>Expansion – string/empty –</li>
+<li>FlexItem – bool/empty –</li>
+<li>StoreId – int/empty –</li>
+<li>Categories – int/empty –</li>
+<li>RxItem <strong><em>Added v.1.04</em></strong> - bool/empty – Invoice item is an RxItem/Pharmacy item</li>
+</ul>
+</li>
+<li>InvoiceText - array - List of all InvoiceText items on invoice. InvoiceText messages contain:
+
+<ul>
+<li>InvoiceId - int - Invoice id</li>
+<li>LineNumber - int - Invoice line number</li>
+<li>Value - string/empty - text/note value</li>
+<li>Categories - int/empty </li>
+<li>Expansion - string/empty</li>
+</ul>
+</li>
+<li>InvoicePayments - array - List of all  items on invoice. InvoicePayment messages contain:
+
+<ul>
+<li>InvoiceId - int - Invoice id</li>
+<li>LineNumber - int - Invoice line number</li>
+<li>Date - date/empty - Payment date</li>
+<li>Type - int/empty - Type of payment made
+
+<ul>
+<li>1 - Cash</li>
+<li>2 - Charge</li>
+<li>3 - Credit Card</li>
+<li>4 - Check</li>
+<li>5 - Coupon</li>
+<li>6 - [Reserved]</li>
+<li>7 - [Reserved]</li>
+<li>8 - Change</li>
+<li>9 - ROA Cash</li>
+<li>10 - Discount</li>
+<li>11 - ROA Credit Card</li>
+<li>12 - ROA Check</li>
+<li>13 - ROA Change</li>
+<li>14 - Cash Paid-Out</li>
+<li>15 - [Reserved]</li>
+<li>16 - Cash Drop</li>
+<li>17 - Instant Savings Coupons (ACE)</li>
+<li>18 - Dynamic Promotions Coupons (ACE)</li>
+</ul>
+</li>
+<li>Amount - decimal/empty - Total amount of tax due</li>
+<li>Data - string/empty - XML data, containing any extra payment specific details</li>
+<li>SaleId - int/empty - SaleId associated with payment</li>
+<li>Categories - int/empty </li>
+<li>Expansion - string/empty</li>
+</ul>
+</li>
+<li>InvoiceTaxes - array - List of all  items on invoice. InvoiceTax messages contain:
+
+<ul>
+<li>Id - int - Payment Id</li>
+<li>InvoiceId - int - Invoice id</li>
+<li>LineNumber - int - Invoice line number</li>
+<li>Name - string/empty - Name of tax</li>
+<li>Rate - decimal/empty - Tax rate</li>
+<li>Amount - decimal/empty - Total amount of tax due</li>
+<li>Categories - int/empty </li>
+<li>Expansion - string/empty</li>
+</ul>
+</li>
+<li>InvoiceRxItemFlags <strong><em>Added v.1.04</em></strong> - Containing any number of InvoiceRxItemFlag entries. InvoiceRxItemFlag messages contain:
+
+<ul>
+<li>CustomerId – string/empty – Customer id associated with flag</li>
+<li>CustomerName – string/empty – Customer name of customer flag applied to</li>
+<li>Type – int/empty – Rx Item flag type</li>
+<li>Accepted – bool/empty - Accepted by customer, “true” or “false”</li>
+<li>Signature - byte[]/empty - Base64 encoding of signature. If not accepted, element will be empty/missing</li>
+</ul>
+</li>
+</ul><h4>
+<a name="example--saveinvoice-request" class="anchor" href="#example--saveinvoice-request"><span class="octicon octicon-link"></span></a>Example – SaveInvoice Request</h4>
+
+<div class="highlight highlight-xml"><pre><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;SaveInvoice</span> <span class="na">xmlns=</span><span class="s">"http://services.paladinpos.com/PaladinPharmacyCOMv1"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;invoice&gt;</span>
+    <span class="nt">&lt;Id&gt;</span>28841<span class="nt">&lt;/Id&gt;</span>
+    <span class="nt">&lt;Deleted&gt;</span>false<span class="nt">&lt;/Deleted&gt;</span>
+    <span class="nt">&lt;Number&gt;</span>28841<span class="nt">&lt;/Number&gt;</span>
+    <span class="nt">&lt;Date&gt;</span>2013-11-22T13:16:51.384<span class="nt">&lt;/Date&gt;</span>
+    <span class="nt">&lt;AccountNumber&gt;</span>2332<span class="nt">&lt;/AccountNumber&gt;</span>
+    <span class="nt">&lt;AccountName&gt;</span>Test Customer<span class="nt">&lt;/AccountName&gt;</span>
+    <span class="nt">&lt;PharmacyAccountNumber&gt;</span>111222333444555666<span class="nt">&lt;/PharmacyAccountNumber&gt;</span>
+    <span class="nt">&lt;AccountTracker&gt;</span>0<span class="nt">&lt;/AccountTracker&gt;</span>
+    <span class="nt">&lt;TerminalNumber&gt;</span>4<span class="nt">&lt;/TerminalNumber&gt;</span>
+    <span class="nt">&lt;EmployeeNumber&gt;</span>1<span class="nt">&lt;/EmployeeNumber&gt;</span>
+    <span class="nt">&lt;PurchaseOrderNumber</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;Total&gt;</span>47.77<span class="nt">&lt;/Total&gt;</span>
+    <span class="nt">&lt;Profit&gt;</span>44.44<span class="nt">&lt;/Profit&gt;</span>
+    <span class="nt">&lt;PromptPaymentDiscount&gt;</span>0<span class="nt">&lt;/PromptPaymentDiscount&gt;</span>
+    <span class="nt">&lt;GlobalTax&gt;</span>true<span class="nt">&lt;/GlobalTax&gt;</span>
+    <span class="nt">&lt;GlobalNet&gt;</span>false<span class="nt">&lt;/GlobalNet&gt;</span>
+    <span class="nt">&lt;GlobalDefective&gt;</span>false<span class="nt">&lt;/GlobalDefective&gt;</span>
+    <span class="nt">&lt;DefaultTaxOverride&gt;</span>false<span class="nt">&lt;/DefaultTaxOverride&gt;</span>
+    <span class="nt">&lt;InvoiceType&gt;</span>0<span class="nt">&lt;/InvoiceType&gt;</span>
+    <span class="nt">&lt;Signature&gt;</span>R0lGODlhkAGAAPcAAAAAAAAAMwAAZgAAmQAAzAAA/TYMkfFMWEQVByJXc7UqEpvdIzemlvlbCMpSxhExAAOw==<span class="nt">&lt;/Signature&gt;</span>
+    <span class="nt">&lt;FlexTotal</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;StoreId</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;CustomerRewardNumber&gt;</span>111222333444555666<span class="nt">&lt;/CustomerRewardNumber&gt;</span>
+    <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;InvoiceItems&gt;</span>
+      <span class="nt">&lt;InvoiceItem&gt;</span>
+        <span class="nt">&lt;InvoiceId&gt;</span>28841<span class="nt">&lt;/InvoiceId&gt;</span>
+        <span class="nt">&lt;LineNumber&gt;</span>1<span class="nt">&lt;/LineNumber&gt;</span>
+        <span class="nt">&lt;InventoryId&gt;</span>-2147483648<span class="nt">&lt;/InventoryId&gt;</span>
+        <span class="nt">&lt;Date&gt;</span>2013-11-22T13:16:51.384<span class="nt">&lt;/Date&gt;</span>
+        <span class="nt">&lt;PartNumber&gt;</span>123456<span class="nt">&lt;/PartNumber&gt;</span>
+        <span class="nt">&lt;Description&gt;</span>Pharmacy Item 123456<span class="nt">&lt;/Description&gt;</span>
+        <span class="nt">&lt;PrimaryNumber</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;DepartmentId&gt;</span>10020<span class="nt">&lt;/DepartmentId&gt;</span>
+        <span class="nt">&lt;QuantitySold&gt;</span>1<span class="nt">&lt;/QuantitySold&gt;</span>
+        <span class="nt">&lt;ReorderQuantity&gt;</span>0<span class="nt">&lt;/ReorderQuantity&gt;</span>
+        <span class="nt">&lt;RetailPrice&gt;</span>44.44<span class="nt">&lt;/RetailPrice&gt;</span>
+        <span class="nt">&lt;SellPrice&gt;</span>44.44<span class="nt">&lt;/SellPrice&gt;</span>
+        <span class="nt">&lt;SoldPrice&gt;</span>44.44<span class="nt">&lt;/SoldPrice&gt;</span>
+        <span class="nt">&lt;SellThreshold&gt;</span>0<span class="nt">&lt;/SellThreshold&gt;</span>
+        <span class="nt">&lt;Taxable&gt;</span>true<span class="nt">&lt;/Taxable&gt;</span>
+        <span class="nt">&lt;Net&gt;</span>false<span class="nt">&lt;/Net&gt;</span>
+        <span class="nt">&lt;Defective&gt;</span>false<span class="nt">&lt;/Defective&gt;</span>
+        <span class="nt">&lt;LineExt&gt;</span>44.44<span class="nt">&lt;/LineExt&gt;</span>
+        <span class="nt">&lt;PromptPaymentDiscount&gt;</span>0<span class="nt">&lt;/PromptPaymentDiscount&gt;</span>
+        <span class="nt">&lt;Profit&gt;</span>44.44<span class="nt">&lt;/Profit&gt;</span>
+        <span class="nt">&lt;CostPerUnit&gt;</span>0<span class="nt">&lt;/CostPerUnit&gt;</span>
+        <span class="nt">&lt;CostLineExt&gt;</span>0<span class="nt">&lt;/CostLineExt&gt;</span>
+        <span class="nt">&lt;PriceType</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;PricingPlanId&gt;</span>0<span class="nt">&lt;/PricingPlanId&gt;</span>
+        <span class="nt">&lt;SaleId&gt;</span>0<span class="nt">&lt;/SaleId&gt;</span>
+        <span class="nt">&lt;SupplierId1&gt;</span>-1<span class="nt">&lt;/SupplierId1&gt;</span>
+        <span class="nt">&lt;SupplierId2&gt;</span>-1<span class="nt">&lt;/SupplierId2&gt;</span>
+        <span class="nt">&lt;ClassId1&gt;</span>-1<span class="nt">&lt;/ClassId1&gt;</span>
+        <span class="nt">&lt;SubclassId1&gt;</span>-1<span class="nt">&lt;/SubclassId1&gt;</span>
+        <span class="nt">&lt;ClassId2&gt;</span>-1<span class="nt">&lt;/ClassId2&gt;</span>
+        <span class="nt">&lt;SubclassId2&gt;</span>-1<span class="nt">&lt;/SubclassId2&gt;</span>
+        <span class="nt">&lt;ClassId3&gt;</span>-1<span class="nt">&lt;/ClassId3&gt;</span>
+        <span class="nt">&lt;SubclassId3&gt;</span>-1<span class="nt">&lt;/SubclassId3&gt;</span>
+        <span class="nt">&lt;FlexItem&gt;</span>true<span class="nt">&lt;/FlexItem&gt;</span>
+        <span class="nt">&lt;StoreId</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;RxItem&gt;</span>true<span class="nt">&lt;/RxItem&gt;</span>
+      <span class="nt">&lt;/InvoiceItem&gt;</span>
+    <span class="nt">&lt;/InvoiceItems&gt;</span>
+    <span class="nt">&lt;InvoiceText&gt;</span>
+      <span class="nt">&lt;InvoiceText&gt;</span>
+        <span class="nt">&lt;InvoiceId&gt;</span>28841<span class="nt">&lt;/InvoiceId&gt;</span>
+        <span class="nt">&lt;LineNumber&gt;</span>2<span class="nt">&lt;/LineNumber&gt;</span>
+        <span class="nt">&lt;Value&gt;</span>This message is for everyone!<span class="nt">&lt;/Value&gt;</span>
+        <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/InvoiceText&gt;</span>
+    <span class="nt">&lt;/InvoiceText&gt;</span>
+    <span class="nt">&lt;InvoicePayments&gt;</span>
+      <span class="nt">&lt;InvoicePayment&gt;</span>
+        <span class="nt">&lt;InvoiceId&gt;</span>28841<span class="nt">&lt;/InvoiceId&gt;</span>
+        <span class="nt">&lt;LineNumber&gt;</span>3<span class="nt">&lt;/LineNumber&gt;</span>
+        <span class="nt">&lt;Date&gt;</span>2013-11-22T13:16:51.384<span class="nt">&lt;/Date&gt;</span>
+        <span class="nt">&lt;Type&gt;</span>2<span class="nt">&lt;/Type&gt;</span>
+        <span class="nt">&lt;Amount&gt;</span>47.77<span class="nt">&lt;/Amount&gt;</span>
+        <span class="nt">&lt;Data&gt;</span><span class="ni">&amp;lt;</span>Charge<span class="ni">&amp;gt;</span>
+<span class="ni">&amp;lt;</span>AccountNumber<span class="ni">&amp;gt;</span>2332<span class="ni">&amp;lt;</span>/AccountNumber<span class="ni">&amp;gt;</span>
+<span class="ni">&amp;lt;</span>Name /<span class="ni">&amp;gt;</span>
+<span class="ni">&amp;lt;</span>Memo /<span class="ni">&amp;gt;</span>
+<span class="ni">&amp;lt;</span>/Charge<span class="ni">&amp;gt;</span><span class="nt">&lt;/Data&gt;</span>
+        <span class="nt">&lt;SaleId</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/InvoicePayment&gt;</span>
+    <span class="nt">&lt;/InvoicePayments&gt;</span>
+    <span class="nt">&lt;InvoiceTaxes&gt;</span>
+      <span class="nt">&lt;InvoiceTax&gt;</span>
+        <span class="nt">&lt;Id&gt;</span>83878<span class="nt">&lt;/Id&gt;</span>
+        <span class="nt">&lt;InvoiceId&gt;</span>28841<span class="nt">&lt;/InvoiceId&gt;</span>
+        <span class="nt">&lt;Name&gt;</span>Florida Sales Tax<span class="nt">&lt;/Name&gt;</span>
+        <span class="nt">&lt;Type&gt;</span>1<span class="nt">&lt;/Type&gt;</span>
+        <span class="nt">&lt;Rate&gt;</span>7.5<span class="nt">&lt;/Rate&gt;</span>
+        <span class="nt">&lt;Amount&gt;</span>3.33<span class="nt">&lt;/Amount&gt;</span>
+        <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/InvoiceTax&gt;</span>
+      <span class="nt">&lt;InvoiceTax&gt;</span>
+        <span class="nt">&lt;Id&gt;</span>83879<span class="nt">&lt;/Id&gt;</span>
+        <span class="nt">&lt;InvoiceId&gt;</span>28841<span class="nt">&lt;/InvoiceId&gt;</span>
+        <span class="nt">&lt;Name&gt;</span>None<span class="nt">&lt;/Name&gt;</span>
+        <span class="nt">&lt;Type&gt;</span>2<span class="nt">&lt;/Type&gt;</span>
+        <span class="nt">&lt;Rate&gt;</span>0<span class="nt">&lt;/Rate&gt;</span>
+        <span class="nt">&lt;Amount&gt;</span>0<span class="nt">&lt;/Amount&gt;</span>
+        <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/InvoiceTax&gt;</span>
+      <span class="nt">&lt;InvoiceTax&gt;</span>
+        <span class="nt">&lt;Id&gt;</span>83880<span class="nt">&lt;/Id&gt;</span>
+        <span class="nt">&lt;InvoiceId&gt;</span>28841<span class="nt">&lt;/InvoiceId&gt;</span>
+        <span class="nt">&lt;Name&gt;</span>None<span class="nt">&lt;/Name&gt;</span>
+        <span class="nt">&lt;Type&gt;</span>3<span class="nt">&lt;/Type&gt;</span>
+        <span class="nt">&lt;Rate&gt;</span>0<span class="nt">&lt;/Rate&gt;</span>
+        <span class="nt">&lt;Amount&gt;</span>0<span class="nt">&lt;/Amount&gt;</span>
+        <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/InvoiceTax&gt;</span>
+    <span class="nt">&lt;/InvoiceTaxes&gt;</span>
+    <span class="nt">&lt;InvoiceRxItemFlags&gt;</span>
+      <span class="nt">&lt;InvoiceRxItemFlag&gt;</span>
+        <span class="nt">&lt;CustomerId&gt;</span>111222333444555666<span class="nt">&lt;/CustomerId&gt;</span>
+        <span class="nt">&lt;CustomerName&gt;</span>Test Customer<span class="nt">&lt;/CustomerName&gt;</span>
+        <span class="nt">&lt;Type&gt;</span>1<span class="nt">&lt;/Type&gt;</span>
+        <span class="nt">&lt;Accepted&gt;</span>true<span class="nt">&lt;/Accepted&gt;</span>
+        <span class="nt">&lt;Signature&gt;</span>R0lGODlhkAGAAPcAAAAAAAAAMwAAZgAAmQAAzAAA/lbCMpSxhExAAOw==<span class="nt">&lt;/Signature&gt;</span>
+      <span class="nt">&lt;/InvoiceRxItemFlag&gt;</span>
+    <span class="nt">&lt;/InvoiceRxItemFlags&gt;</span>
+  <span class="nt">&lt;/invoice&gt;</span>
+<span class="nt">&lt;/SaveInvoice&gt;</span>
+</pre></div>
+
+<p><strong><em>Signature values shortened for example</em></strong></p>
       </section>
     </div>
 
