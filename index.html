@@ -34,21 +34,120 @@
         <h1>
 <a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>ABOUT</h1>
 
-<p>Paladin Data Corporation is providing a way for pharmacy systems to communicate with the Paladin POS system. This will enable pharmacy systems to utilize the PaladinPOS GUI front end while retaining their current system and business function. </p>
-
-<p>Pharmacy systems just need to implement a simple SOAP-based webservice in order to allow PaladinPOS to communicate with your system. </p>
+<p>Paladin Data Corporation is providing a way for pharmacy systems to communicate with the Paladin POS system. This will enable pharmacy systems to utilize the PaladinPOS GUI front end while retaining their current system and business function. 
+Pharmacy systems just need to implement a simple SOAP-based webservice in order to allow PaladinPOS to communicate with your system. </p>
 
 <h1>
 <a name="webservice-methods" class="anchor" href="#webservice-methods"><span class="octicon octicon-link"></span></a>WEBSERVICE METHODS</h1>
 
-<p>The webservice should provide four methods to Paladin POS.</p>
+<p>The webservice should provide the following methods to Paladin POS:</p>
 
 <ul>
-<li>GetRxItem(rxNumber) – Allows Paladin POS to query the pharmacy system for a specific Rx numbers.</li>
+<li>GetRxItem(rxNumber) </li>
 <li>SaveRxInvoice(rxInvoice) – Allows Paladin POS to inform the pharmacy system of the sale of specific RxItems.</li>
 <li>GetAvailableCredit(customerId) – Allows Paladin POS to query the pharmacy system for a specific customer id, returning the amount of available credit the customer has available as well as the total account balance for the account. </li>
 <li>SaveInvoice(invoice) – Allows PaladinPOS to send an entire invoice to the pharmacy system. Invoice contains all from paladin system. Invoice is sent regardless of any pharmacy items are on the invoice. </li>
+</ul><h2>
+<a name="getrxitem-method" class="anchor" href="#getrxitem-method"><span class="octicon octicon-link"></span></a>GetRxItem Method</h2>
+
+<p>Allows PaladinPOS to query the pharmacy system for a specific Rx number. During checkout, PaladinPOS will call the pharmacy webservice GetRxItem in order to try to find the part number entered into the system. The pharmacy service implementation should respond back to paladin indicating that the item was invalid (not found) or valid (found). </p>
+
+<h3>
+<a name="getrxitem-request" class="anchor" href="#getrxitem-request"><span class="octicon octicon-link"></span></a>GetRxItem Request</h3>
+
+<h3>
+<a name="getrxitem-response" class="anchor" href="#getrxitem-response"><span class="octicon octicon-link"></span></a>GetRxItem Response</h3>
+
+<p>If an Rx number is invalid, the webservice should return an RxItem containing the following values:</p>
+
+<ul>
+<li>RxNumber - The original Rx Number that was passed into the webservice call</li>
+<li>RxValid - Set to “false”</li>
+<li>RxMessages - Containing any number of <em>RxMessage</em> entries
+
+<ul>
+<li>Message - <em>Attribute</em> - Text for why item was invalid (ie. Not found, etc…)</li>
+<li>Print - <em>Attribute</em> - Print message “true” or “false”. Attribute value ignored</li>
 </ul>
+</li>
+<li><strong><em>All other elements are ignored/missing</em></strong></li>
+</ul><h4>
+<a name="example---rxitem-invalid" class="anchor" href="#example---rxitem-invalid"><span class="octicon octicon-link"></span></a>Example - RxItem Invalid</h4>
+
+<div class="highlight highlight-xml"><pre><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;RxItem</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:xsd=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span> <span class="na">xmlns=</span><span class="s">"http://services.paladinpos.com/PaladinPharmacyCOMv1"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;RxNumber&gt;</span>Test Invalid Rx Item 1<span class="nt">&lt;/RxNumber&gt;</span>
+  <span class="nt">&lt;RxValid&gt;</span>false<span class="nt">&lt;/RxValid&gt;</span>
+  <span class="nt">&lt;RxAmountDue&gt;</span>0<span class="nt">&lt;/RxAmountDue&gt;</span>
+  <span class="nt">&lt;RxMessages&gt;</span>
+    <span class="nt">&lt;RxMessage</span> <span class="na">Message=</span><span class="s">"Item does not exist in the system!"</span> <span class="na">Print=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/RxMessages&gt;</span>
+  <span class="nt">&lt;RxItemFlags</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/RxItem&gt;</span>
+</pre></div>
+
+<p>If an Rx number is valid, the webservice should return an RxItem containing the following values:</p>
+
+<ul>
+<li>  RxNumber - The original Rx Number that was passed into the webservice call</li>
+<li>  RxValid - Set to “true”.</li>
+<li>  RxCustomerName - Full name of customer on prescription.</li>
+<li>  RxCustomerFName - Customer first name (optional)</li>
+<li>  RxCustomerMName - Customer middle name (optional)</li>
+<li>  RxCustomerLName - Customer last name (optional)</li>
+<li>  RxPatientID - Customer ID from pharmacy system (optional)</li>
+<li>  RxCustomerPhone1 - Customer phone number (optional)</li>
+<li>  RxCustomerRegAddress1 - Customer address line 1 (optional)</li>
+<li>  RxCustomerRegAddress2 - Customer address line 2 (optional)</li>
+<li>  RxCustomerRegCity - Customer city (optional)</li>
+<li>  RxCustomerRegState - Customer state (optional)</li>
+<li>  RxCustomerRegZIP - Customer zip (optional)</li>
+<li>  RxAmountDue - Total price to charge customer for item.</li>
+<li>  RxTaxable - Charge tax for this item. “true” or “false”.</li>
+<li>  RxMessages - Containing any number of RxMessage entries.
+
+<ul>
+<li> Message - <em>Attribute</em> - Text for message. Up to 62 characters per message.</li>
+<li> Print - <em>Attribute</em> - Print message on receipt (“true” or “false”).</li>
+</ul>
+</li>
+<li>  RxItemFlags - Containing any number of valid RxItemFlag entries.
+
+<ul>
+<li> Type - <em>Attribute</em> - Flag type numerical value. 
+
+<ul>
+<li>  Type 1 – HIPPA agreement.</li>
+<li>  Type 2 – Safety cap agreement.</li>
+<li>  Type 3 – Pharmacy consult offered</li>
+</ul>
+</li>
+<li> Message - <em>Attribute</em> - Message (if applicable) associated with flag.</li>
+<li> Required - <em>Attribute</em> - Client flag condition is required to be accepted.</li>
+</ul>
+</li>
+</ul><h4>
+<a name="example---rxitem-valid" class="anchor" href="#example---rxitem-valid"><span class="octicon octicon-link"></span></a>Example - RxItem Valid</h4>
+
+<div class="highlight highlight-xml"><pre><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;RxItem</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:xsd=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span> <span class="na">xmlns=</span><span class="s">"http://services.paladinpos.com/PaladinPharmacyCOMv1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;RxNumber&gt;</span>123456789<span class="nt">&lt;/RxNumber&gt;</span>
+    <span class="nt">&lt;RxValid&gt;</span>true<span class="nt">&lt;/RxValid&gt;</span>
+    <span class="nt">&lt;RxCustomerName&gt;</span>Test Customer<span class="nt">&lt;/RxCustomerName&gt;</span>
+    <span class="nt">&lt;RxPatientID&gt;</span>111222333444555666<span class="nt">&lt;/RxPatientID&gt;</span>
+    <span class="nt">&lt;RxAmountDue&gt;</span>50.00<span class="nt">&lt;/RxAmountDue&gt;</span>
+    <span class="nt">&lt;RxTaxable&gt;</span>true<span class="nt">&lt;/RxTaxable&gt;</span>
+    <span class="nt">&lt;RxMessages&gt;</span>
+      <span class="nt">&lt;RxMessage</span> <span class="na">Message=</span><span class="s">"This item is a screen only message"</span> <span class="na">Print=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;RxMessage</span> <span class="na">Message=</span><span class="s">"This message is for everyone!"</span> <span class="na">Print=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/RxMessages&gt;</span>
+    <span class="nt">&lt;RxItemFlags&gt;</span>
+      <span class="nt">&lt;RxItemFlag</span> <span class="na">Type=</span><span class="s">"1"</span> <span class="na">Message=</span><span class="s">"HIPPA First Time Signature"</span> <span class="na">Required=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;RxItemFlag</span> <span class="na">Type=</span><span class="s">"2"</span> <span class="na">Message=</span><span class="s">"No Safety Cap on Rx"</span> <span class="na">Required=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;RxItemFlag</span> <span class="na">Type=</span><span class="s">"3"</span> <span class="na">Message=</span><span class="s">"Need Pharmacist Consult"</span> <span class="na">Required=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/RxItemFlags&gt;</span>
+<span class="nt">&lt;/RxItem&gt;</span>
+</pre></div>
       </section>
     </div>
 
