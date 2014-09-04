@@ -1,4 +1,5 @@
-﻿using PaladinPharmacyCOMv1.Models;
+﻿using PaladinPharmacyCOMv1.Interfaces;
+using PaladinPharmacyCOMv1.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace PaladinPharmacyCOMv1.Example.Services
 {
-    public class DemoPharmacyService
+    public class DemoPharmacyService : IPharmacyCOMv1Service
     {
         //---------------------------------------------------------------------------------------------------------
         //---------------------------------------------------------------------------------------------------------

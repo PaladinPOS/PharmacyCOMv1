@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="PaladinPharmacyCOMv1.WCF.PharmacyCOM" CodeBehind="PharmacyCOM.svc.cs" %>

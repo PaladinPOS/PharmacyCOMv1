@@ -5,6 +5,7 @@ using System.Collections;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
+using PaladinPharmacyCOMv1.Interfaces;
 using PaladinPharmacyCOMv1.Models;
 
 namespace PaladinPharmacyCOMv1
@@ -15,7 +16,7 @@ namespace PaladinPharmacyCOMv1
     [WebService(Namespace = "http://services.paladinpos.com/PaladinPharmacyCOMv1")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [ToolboxItem(false)]
-    public class PharmacyCOM : System.Web.Services.WebService
+    public class PharmacyCOM : System.Web.Services.WebService, IPharmacyCOMv1Service
     {
         //---------------------------------------------------------------------------------------------------------
         //---------------------------------------------------------------------------------------------------------
