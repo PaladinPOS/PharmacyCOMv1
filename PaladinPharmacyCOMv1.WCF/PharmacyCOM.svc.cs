@@ -29,7 +29,7 @@ namespace PaladinPharmacyCOMv1.WCF
         ///     Paladin POS will call this method when requesting a perscription from the pharmacy system.
         /// </remarks>
         [OperationContract(Name = "GetRxItem", Action = @"http://services.paladinpos.com/PaladinPharmacyCOMv1/GetRxItem")]
-        public Models.RxItem GetRxItem(string rxNumber)
+        public RxItem GetRxItem(string rxNumber)
         {
             //TODO: Get rxNumber from pharmacy system and return as RxItem to Paladin POS.
             throw new NotImplementedException("Method to be implemented by pharmacy system.");
@@ -66,7 +66,7 @@ namespace PaladinPharmacyCOMv1.WCF
         ///     An AvailableCredit value of zero or less will disable customer account charges in Paladin POS.
         /// </remarks>
         [OperationContract(Name = "GetAvailableCredit", Action = @"http://services.paladinpos.com/PaladinPharmacyCOMv1/GetAvailableCredit")]
-        public Models.AvailableCreditResponse GetAvailableCredit(string customerId)
+        public AvailableCreditResponse GetAvailableCredit(string customerId)
         {
             //TODO: Get available credit from pharmacy system and return as AvailableCreditResponse to Paladin POS.
             throw new NotImplementedException("Method to be implemented by pharmacy system.");
