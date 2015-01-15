@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaladinPharmacyCOMv1.WebService", "PaladinPharmacyCOMv1.WebService\PaladinPharmacyCOMv1.WebService.csproj", "{48194664-7B8D-432A-967B-75202D46CE6B}"
 EndProject
@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaladinPharmacyCOMv1.WCF", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaladinPharmacyCOMv1", "PaladinPharmacyCOMv1\PaladinPharmacyCOMv1.csproj", "{58003F27-2BAB-4946-B0E2-601C4601E392}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaladinPharmacyCOMv1.Example.Client", "Samples\PaladinPharmacyCOMv1.Example.Client\PaladinPharmacyCOMv1.Example.Client.csproj", "{434DA0B2-C9DB-46E8-85C2-19BB70339257}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{58003F27-2BAB-4946-B0E2-601C4601E392}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58003F27-2BAB-4946-B0E2-601C4601E392}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58003F27-2BAB-4946-B0E2-601C4601E392}.Release|Any CPU.Build.0 = Release|Any CPU
+		{434DA0B2-C9DB-46E8-85C2-19BB70339257}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{434DA0B2-C9DB-46E8-85C2-19BB70339257}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{434DA0B2-C9DB-46E8-85C2-19BB70339257}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{434DA0B2-C9DB-46E8-85C2-19BB70339257}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1F7B9FDB-4C72-448E-B020-A42276E087E1} = {9BE42905-1CFC-4630-988B-5BE4F2B44716}
 		{173F42BB-01A3-4F89-920F-75B144B61567} = {B156035E-A371-4839-8495-34B1F74B67D0}
+		{434DA0B2-C9DB-46E8-85C2-19BB70339257} = {9BE42905-1CFC-4630-988B-5BE4F2B44716}
 	EndGlobalSection
 	GlobalSection(TextTemplating) = postSolution
 		TextTemplating = 1
