@@ -58,9 +58,10 @@ namespace PaladinPharmacyCOMv1.Example.Client
                 }
             });
 
-            ObservableCollection<string> list = new ObservableCollection<string>();
-            list.Add("http://localhost:61793/PharmacyCOM.asmx");
-            cbServerUrl.ItemsSource = list;
+            //ObservableCollection<string> list = new ObservableCollection<string>();
+            //list.Add("http://localhost:61793/PharmacyCOM.asmx");
+            //cbServerUrl.ItemsSource = list;
+            txtServerUrl.Text = "http://localhost:61793/PharmacyCOM.asmx";
 
             tabServiceCommands.IsEnabled = false;
             tabServiceDetails.IsEnabled = false;
@@ -78,7 +79,27 @@ namespace PaladinPharmacyCOMv1.Example.Client
             //tabServiceDetails.SelectedIndex = 1;
         }
 
-        private void cbServerUrl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SetupService()
+        {
+            try
+            {
+                TeardownService();
+                if (!String.IsNullOrWhiteSpace(txtServerUrl.Text.Trim()))
+                {
+                    m_service = new WebService.PharmacyCOM(txtServerUrl.Text.Trim());
+                    m_service.GetRxItemCompleted -= service_GetRxItemCompleted;
+                    tabServiceCommands.IsEnabled = true;
+                    tabServiceDetails.IsEnabled = true;
+                }
+            }
+            catch
+            {
+                tabServiceCommands.IsEnabled = false;
+                tabServiceDetails.IsEnabled = false;
+            }
+        }
+
+        private void TeardownService()
         {
             if (m_service != null)
             {
@@ -87,18 +108,18 @@ namespace PaladinPharmacyCOMv1.Example.Client
                 m_service = null;
             }
 
-            if (!String.IsNullOrWhiteSpace(cbServerUrl.Text.Trim()))
-            {
-                m_service = new WebService.PharmacyCOM(cbServerUrl.Text.Trim());
-                m_service.GetRxItemCompleted -= service_GetRxItemCompleted;
-                tabServiceCommands.IsEnabled = true;
-                tabServiceDetails.IsEnabled = true;
-            }
-            else
-            {
-                tabServiceCommands.IsEnabled = false;
-                tabServiceDetails.IsEnabled = false;
-            }
+            tabServiceCommands.IsEnabled = false;
+            tabServiceDetails.IsEnabled = false;
+        }
+
+        private void btnSetupService_Click(object sender, RoutedEventArgs e)
+        {
+            SetupService();
+        }
+
+        private void txtServerUrl_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TeardownService();
         }
     }
 }

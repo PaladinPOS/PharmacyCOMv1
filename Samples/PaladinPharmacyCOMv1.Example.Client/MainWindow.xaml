@@ -5,8 +5,8 @@
         Title="Paladin PharmacyCOMv1 Test Client" Height="700" Width="803">
     <Grid Margin="10">
 
-        <Label Content="Server URL:" HorizontalAlignment="Left" Margin="46,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.777,-0.016" HorizontalContentAlignment="Right"/>
-        <ComboBox x:Name="cbServerUrl" Margin="121,8,0,0" VerticalAlignment="Top" IsEditable="True" SelectionChanged="cbServerUrl_SelectionChanged"/>
+        <Label Content="Server URL:" HorizontalAlignment="Left" Margin="46,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.777,-0.016" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="txtServerUrl" TextWrapping="Wrap" Margin="121,4,0,0" VerticalAlignment="Top" Height="20" TextChanged="txtServerUrl_TextChanged" HorizontalAlignment="Left" Width="564"/>
 
         <TabControl x:Name="tabServiceCommands" Margin="0,35,0,450" TabStripPlacement="Left" Height="165">
             <TabItem Header="GetRxItem">
@@ -42,6 +42,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Button x:Name="btnSetupService" Content="Setup" HorizontalAlignment="Left" Margin="690,4,0,0" VerticalAlignment="Top" Width="75" Click="btnSetupService_Click"/>
 
     </Grid>
 </Window>
