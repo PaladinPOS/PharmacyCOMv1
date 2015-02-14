@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -71,12 +72,54 @@ namespace PaladinPharmacyCOMv1.Example.Client
         {
             txtRequest.Text = String.Empty;
             txtResponse.Text = String.Empty;
+            txtResults.Text = String.Empty;
             m_service.GetRxItemAsync(txtPartNumber.Text.Trim());
         }
 
         void service_GetRxItemCompleted(object sender, WebService.GetRxItemCompletedEventArgs e)
         {
-            //tabServiceDetails.SelectedIndex = 1;
+            StringBuilder sb = new StringBuilder();
+            if (e.Error != null)
+            {
+                sb.AppendLine("#####");
+                sb.AppendLine(String.Format("{0}: {1}", "Error", e.Error));
+                sb.AppendLine("#####");
+                sb.AppendLine();
+            }
+
+            if (e.Result == null)
+            {
+                sb.AppendLine(String.Format("{0}: {1}", "Result", "null"));
+            }
+            else
+            {
+                WebService.RxItem item = e.Result;
+                sb.AppendLine(String.Format("{0}: \"{1}\"", "Result", item.GetType().Name));
+                item.GetType().GetProperties().ToList().ForEach(p =>
+                {
+                    sb.AppendLine(String.Format("{0}: {1}", p.Name, p.GetValue(item)));
+                    if (p.PropertyType.IsGenericType)
+                    {
+                        var list = p.GetValue(item) as IEnumerable;
+                        if (list != null)
+                        {
+                            foreach (object lItem in list)
+                            {
+                                sb.AppendLine(String.Format("\t{0}: {1}", "Item", lItem.GetType().Name));
+                                lItem.GetType().GetProperties().ToList().ForEach(p2 =>
+                                {
+                                    sb.AppendLine(String.Format("\t\t{0}: {1}", p2.Name, p2.GetValue(lItem)));
+                                });
+                            }
+                        }
+                    }
+                });
+            }
+
+            sb.AppendLine();
+
+            txtResults.Text = sb.ToString();
+            tabServiceDetails.SelectedIndex = 2;
         }
 
         private void SetupService()
@@ -87,7 +130,7 @@ namespace PaladinPharmacyCOMv1.Example.Client
                 if (!String.IsNullOrWhiteSpace(txtServerUrl.Text.Trim()))
                 {
                     m_service = new WebService.PharmacyCOM(txtServerUrl.Text.Trim());
-                    m_service.GetRxItemCompleted -= service_GetRxItemCompleted;
+                    m_service.GetRxItemCompleted += service_GetRxItemCompleted;
                     tabServiceCommands.IsEnabled = true;
                     tabServiceDetails.IsEnabled = true;
                 }

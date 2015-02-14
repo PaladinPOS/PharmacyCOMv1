@@ -41,6 +41,13 @@
                     </ScrollViewer>
                 </Grid>
             </TabItem>
+            <TabItem Header="Results">
+                <Grid Background="#FFE5E5E5">
+                    <ScrollViewer Margin="0" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+                        <TextBox x:Name="txtResults" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap" Padding="2"/>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
         </TabControl>
         <Button x:Name="btnSetupService" Content="Setup" HorizontalAlignment="Left" Margin="690,4,0,0" VerticalAlignment="Top" Width="75" Click="btnSetupService_Click"/>
 
