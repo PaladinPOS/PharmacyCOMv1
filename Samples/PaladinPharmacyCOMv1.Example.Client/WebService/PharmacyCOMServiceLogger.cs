@@ -92,11 +92,11 @@ namespace PaladinPharmacyCOMv1.Example.Client.WebService
                     LogSoapMessage(message);
                     break;
                 case SoapMessageStage.AfterDeserialize:
-                    //GetSoapMessageDetails(message);
+                    LogSoapMessage(message);
                     break;
                 case SoapMessageStage.BeforeSerialize:
                     //Do nothing
-                    LogSoapMessage(message);
+                    //LogSoapMessage(message);
                     break;
                 case SoapMessageStage.AfterSerialize:
                     LogSoapMessage(message);
@@ -190,17 +190,25 @@ namespace PaladinPharmacyCOMv1.Example.Client.WebService
                 //Load working stream into XmlDocument
                 m_workingStream.Seek(0, SeekOrigin.Begin);
                 TextReader reader = new StreamReader(m_workingStream);
-                xmlDoc.Load(reader);
-
-                //Setup XmlWriter Settings for use during xml doc output
-                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
-                xmlWriterSettings.Indent = true;
-                xmlWriterSettings.NewLineChars = System.Environment.NewLine;
-
-                //Output Xml Document to string builder
-                using (XmlWriter xmlWriter = XmlWriter.Create(xml, xmlWriterSettings))
+                try
                 {
-                    xmlDoc.WriteTo(xmlWriter);
+                    xmlDoc.Load(reader);
+
+                    //Setup XmlWriter Settings for use during xml doc output
+                    XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+                    xmlWriterSettings.Indent = true;
+                    xmlWriterSettings.NewLineChars = System.Environment.NewLine;
+
+                    //Output Xml Document to string builder
+                    using (XmlWriter xmlWriter = XmlWriter.Create(xml, xmlWriterSettings))
+                    {
+                        xmlDoc.WriteTo(xmlWriter);
+                    }
+                }
+                catch
+                {
+                    StringBuilder sb = new StringBuilder(reader.ReadToEnd());
+                    return sb.ToString();
                 }
             }
             catch (Exception ex)

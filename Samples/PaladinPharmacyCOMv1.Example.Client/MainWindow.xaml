@@ -30,14 +30,14 @@
             <TabItem Header="Service Request">
                 <Grid Background="#FFE5E5E5">
                     <ScrollViewer Margin="0" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
-                        <TextBlock x:Name="txtRequest" TextWrapping="Wrap" Padding="2"/>
+                        <TextBox x:Name="txtRequest" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap" Padding="2"/>
                     </ScrollViewer>
                 </Grid>
             </TabItem>
             <TabItem Header="Service Response">
                 <Grid Background="#FFE5E5E5">
                     <ScrollViewer Margin="0" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
-                        <TextBlock x:Name="txtResponse" TextWrapping="Wrap" Padding="2"/>
+                        <TextBox x:Name="txtResponse" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap" Padding="2"/>
                     </ScrollViewer>
                 </Grid>
             </TabItem>
