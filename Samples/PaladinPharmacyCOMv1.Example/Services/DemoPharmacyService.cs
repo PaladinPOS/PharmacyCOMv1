@@ -37,6 +37,11 @@ namespace PaladinPharmacyCOMv1.Example.Services
             item.RxAmountDue = 44.44m;
             item.RxTaxable = true;
 
+            item.RxCustomerRegAddress1 = "321 Bogus Ave.";
+            item.RxCustomerRegCity = "HomeTown";
+            item.RxCustomerRegState = "OK";
+            item.RxCustomerRegZIP = "34567";
+
             item.RxMessages.Add(new RxMessage("This item is a screen only message"));
             item.RxMessages.Add(new RxMessage("This message is for everyone!", true));
 
