@@ -27,6 +27,22 @@ namespace PaladinPharmacyCOMv1.Example.Services
 
         //---------------------------------------------------------------------------------------------------------
 
+        public List<RxItem> GetRxItems(string rxNumber)
+        {
+            //Simulate GetRxItem from a pharmacy system
+            List<RxItem> items = new List<RxItem>();
+
+            if (rxNumber.ToUpper() == "RXFAMILYCHECKOUT1") { items.Add(CreateDummyRxItem_rxFamilyCheckout1()); }
+            else if (rxNumber.ToUpper() == "RXFAMILYCHECKOUT2") { items.Add(CreateDummyRxItem_rxFamilyCheckout2()); }
+            else { items.Add(CreateDummyRxItem_RandomRxNumber(rxNumber)); }
+
+            items.Add(CreateDummyRxItem_RandomRxNumber(rxNumber + "-2"));
+
+            return items;
+        }
+
+        //---------------------------------------------------------------------------------------------------------
+
         private RxItem CreateDummyRxItem_RandomRxNumber(string rxNumber)
         {
             RxItem item = new RxItem();

@@ -13,6 +13,8 @@ namespace PaladinPharmacyCOMv1.Interfaces
 
         RxItem GetRxItem(string rxNumber);
 
+        List<RxItem> GetRxItems(string rxNumber);
+
         bool SaveInvoice(Invoice invoice);
 
         bool SaveRxInvoice(RxInvoice rxInvoice);

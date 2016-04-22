@@ -56,6 +56,25 @@
         <s:attribute name="Message" type="s:string" />
         <s:attribute name="Required" type="s:boolean" use="required" />
       </s:complexType>
+      <s:element name="GetRxItems">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rxNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRxItemsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRxItemsResult" type="tns:ArrayOfRxItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRxItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RxItem" nillable="true" type="tns:RxItem" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="SaveRxInvoice">
         <s:complexType>
           <s:sequence>
@@ -73,11 +92,6 @@
           <s:element minOccurs="0" maxOccurs="1" name="RxItems" type="tns:ArrayOfRxItem" />
           <s:element minOccurs="0" maxOccurs="1" name="RxPayments" type="tns:ArrayOfRxPayment" />
           <s:element minOccurs="0" maxOccurs="1" name="RxItemFlagResults" type="tns:ArrayOfRxItemFlagResult" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfRxItem">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="RxItem" nillable="true" type="tns:RxItem" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfRxPayment">
@@ -299,6 +313,12 @@
   <wsdl:message name="GetRxItemSoapOut">
     <wsdl:part name="parameters" element="tns:GetRxItemResponse" />
   </wsdl:message>
+  <wsdl:message name="GetRxItemsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRxItems" />
+  </wsdl:message>
+  <wsdl:message name="GetRxItemsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRxItemsResponse" />
+  </wsdl:message>
   <wsdl:message name="SaveRxInvoiceSoapIn">
     <wsdl:part name="parameters" element="tns:SaveRxInvoice" />
   </wsdl:message>
@@ -322,6 +342,10 @@
       <wsdl:input message="tns:GetRxItemSoapIn" />
       <wsdl:output message="tns:GetRxItemSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetRxItems">
+      <wsdl:input message="tns:GetRxItemsSoapIn" />
+      <wsdl:output message="tns:GetRxItemsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="SaveRxInvoice">
       <wsdl:input message="tns:SaveRxInvoiceSoapIn" />
       <wsdl:output message="tns:SaveRxInvoiceSoapOut" />
@@ -339,6 +363,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetRxItem">
       <soap:operation soapAction="http://services.paladinpos.com/PaladinPharmacyCOMv1/GetRxItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRxItems">
+      <soap:operation soapAction="http://services.paladinpos.com/PaladinPharmacyCOMv1/GetRxItems" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -378,6 +411,15 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetRxItem">
       <soap12:operation soapAction="http://services.paladinpos.com/PaladinPharmacyCOMv1/GetRxItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRxItems">
+      <soap12:operation soapAction="http://services.paladinpos.com/PaladinPharmacyCOMv1/GetRxItems" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -7,6 +7,7 @@ using System.Web.Services.Protocols;
 using System.ComponentModel;
 using PaladinPharmacyCOMv1.Interfaces;
 using PaladinPharmacyCOMv1.Models;
+using System.Collections.Generic;
 
 namespace PaladinPharmacyCOMv1
 {
@@ -33,6 +34,26 @@ namespace PaladinPharmacyCOMv1
         /// </remarks>
         [WebMethod]
         public RxItem GetRxItem(string rxNumber)
+        {
+            //TODO: Get rxNumber from pharmacy system and return as RxItem to Paladin POS.
+            throw new NotImplementedException("Method to be implemented by pharmacy system.");
+        }
+
+        //---------------------------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Get RxItems info from pharmacy system.
+        /// </summary>
+        /// <param name="rxNumber"></param>
+        /// <returns>
+        /// Instance of <see cref="RxItem"/> containing details about the requested partnumber.
+        /// </returns>
+        /// <remarks>
+        ///     Paladin POS will call this method when requesting a perscription from the pharmacy system if 
+        ///     return multiple items is enabled.
+        /// </remarks>
+        [WebMethod]
+        public List<RxItem> GetRxItems(string rxNumber)
         {
             //TODO: Get rxNumber from pharmacy system and return as RxItem to Paladin POS.
             throw new NotImplementedException("Method to be implemented by pharmacy system.");

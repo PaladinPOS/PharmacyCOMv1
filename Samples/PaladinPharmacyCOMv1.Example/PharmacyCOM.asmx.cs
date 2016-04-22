@@ -7,6 +7,7 @@ using System.Web.Services.Protocols;
 using System.ComponentModel;
 using PaladinPharmacyCOMv1.Models;
 using PaladinPharmacyCOMv1.Example.Services;
+using System.Collections.Generic;
 
 namespace PaladinPharmacyCOMv1.Example
 {
@@ -41,6 +42,26 @@ namespace PaladinPharmacyCOMv1.Example
         {
             //Get rxNumber from pharmacy system and return as RxItem to Paladin POS.
             return service.GetRxItem(rxNumber);
+        }
+
+        //---------------------------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Get RxItems from pharmacy system.
+        /// </summary>
+        /// <param name="rxNumber"></param>
+        /// <returns>
+        /// Instance of <see cref="RxItem"/> containing details about the requested partnumber.
+        /// </returns>
+        /// <remarks>
+        ///     Paladin POS will call this method when requesting a perscription from the pharmacy system if 
+        ///     return multiple items is enabled.
+        /// </remarks>
+        [WebMethod]
+        public List<RxItem> GetRxItems(string rxNumber)
+        {
+            //Get rxNumber from pharmacy system and return as RxItem to Paladin POS.
+            return service.GetRxItems(rxNumber);
         }
 
         //---------------------------------------------------------------------------------------------------------

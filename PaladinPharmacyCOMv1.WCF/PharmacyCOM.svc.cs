@@ -38,6 +38,26 @@ namespace PaladinPharmacyCOMv1.WCF
         //---------------------------------------------------------------------------------------------------------
 
         /// <summary>
+        /// Get RxItem info from pharmacy system.
+        /// </summary>
+        /// <param name="rxNumber"></param>
+        /// <returns>
+        /// Instance of <see cref="RxItem"/> containing details about the requested partnumber.
+        /// </returns>
+        /// <remarks>
+        ///     Paladin POS will call this method when requesting a perscription from the pharmacy system if 
+        ///     return multiple items is enabled.
+        /// </remarks>
+        [OperationContract(Name = "GetRxItems", Action = @"http://services.paladinpos.com/PaladinPharmacyCOMv1/GetRxItems")]
+        public List<RxItem> GetRxItems(string rxNumber)
+        {
+            //TODO: Get rxNumber from pharmacy system and return as RxItem to Paladin POS.
+            throw new NotImplementedException("Method to be implemented by pharmacy system.");
+        }
+
+        //---------------------------------------------------------------------------------------------------------
+
+        /// <summary>
         /// Save RxInvoice to pharmacy system. 
         /// </summary>
         /// <param name="rxInvoice"></param>

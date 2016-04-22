@@ -29,6 +29,12 @@ namespace PaladinPharmacyCOMv1.Example
             return service.GetRxItem(rxNumber);
         }
 
+        [OperationContract(Name = "GetRxItems", Action = @"http://services.paladinpos.com/PaladinPharmacyCOMv1/GetRxItems")]
+        public List<RxItem> GetRxItems(string rxNumber)
+        {
+            return service.GetRxItems(rxNumber);
+        }
+
         [OperationContract(Name = "SaveInvoice", Action = @"http://services.paladinpos.com/PaladinPharmacyCOMv1/SaveInvoice")]
         public bool SaveInvoice(Invoice invoice)
         {
