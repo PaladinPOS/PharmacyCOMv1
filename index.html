@@ -1,38 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="PharmacyCOMv1 : PaladinPOS Pharmacy Integration Service Definition" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>PharmacyCOMv1 by PaladinPOS</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>PharmacyCOMv1</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
+    <div class="wrapper">
+      <header>
+        <h1>PharmacyCOMv1</h1>
+        <p>PaladinPOS Pharmacy Integration Service Definition</p>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/PaladinPOS/PharmacyCOMv1">View on GitHub</a>
+        <p class="view"><a href="https://github.com/PaladinPOS/PharmacyCOMv1">View the Project on GitHub <small>PaladinPOS/PharmacyCOMv1</small></a></p>
 
-          <h1 id="project_title">PharmacyCOMv1</h1>
-          <h2 id="project_tagline">PaladinPOS Pharmacy Integration Service Definition</h2>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/PaladinPOS/PharmacyCOMv1/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/PaladinPOS/PharmacyCOMv1/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
+        <ul>
+          <li><a href="https://github.com/PaladinPOS/PharmacyCOMv1/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/PaladinPOS/PharmacyCOMv1/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/PaladinPOS/PharmacyCOMv1">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
         <h1>
-<a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>ABOUT</h1>
+<a id="about" class="anchor" href="#about" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ABOUT</h1>
 
 <p>Paladin Data Corporation is providing a way for pharmacy systems to communicate with the Paladin POS system. This service enables pharmacy systems to utilize the Paladin POS GUI front end while retaining their current system and business function. </p>
 
@@ -41,25 +38,28 @@
 <p>PharmacyCOMv1 provides a WSDL (web service definition language) as well as a base .NET Webservice as a starting point for implementing this service.</p>
 
 <h1>
-<a name="webservice-methods" class="anchor" href="#webservice-methods"><span class="octicon octicon-link"></span></a>WEBSERVICE METHODS</h1>
+<a id="webservice-methods" class="anchor" href="#webservice-methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WEBSERVICE METHODS</h1>
 
 <p>The webservice should provide the following methods to Paladin POS:</p>
 
 <ul>
 <li>GetRxItem(rxNumber) - Allows Paladin POS to query the pharmacy system for a specific Rx numbers.</li>
+<li>GetRxItems(rxNumber) - Allows Paladin POS to query the pharmacy system for a specific Rx number, returning any number of results back to the system.</li>
 <li>SaveRxInvoice(rxInvoice) – Allows Paladin POS to inform the pharmacy system of the sale of specific RxItems.</li>
 <li>GetAvailableCredit(customerId) – Allows Paladin POS to query the pharmacy system for a specific customer id, returning the amount of available credit the customer has available as well as the total account balance for the account. </li>
 <li>SaveInvoice(invoice) – Allows Paladin POS to send an entire invoice to the pharmacy system. Invoice contains all from paladin system. Invoice is sent regardless of any pharmacy items are on the invoice. </li>
-</ul><h2>
-<a name="getrxitem-method" class="anchor" href="#getrxitem-method"><span class="octicon octicon-link"></span></a>GetRxItem Method</h2>
+</ul>
+
+<h2>
+<a id="getrxitem-method" class="anchor" href="#getrxitem-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Method</h2>
 
 <p>Allows Paladin POS to query the pharmacy system for a specific Rx number. During checkout, Paladin POS will call the pharmacy webservice GetRxItem in order to try to find the part number entered into the system. The pharmacy service implementation should respond back to paladin indicating that the item was invalid (not found) or valid (found). </p>
 
 <h3>
-<a name="getrxitem-request" class="anchor" href="#getrxitem-request"><span class="octicon octicon-link"></span></a>GetRxItem Request</h3>
+<a id="getrxitem-request" class="anchor" href="#getrxitem-request" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Request</h3>
 
 <h3>
-<a name="getrxitem-response" class="anchor" href="#getrxitem-response"><span class="octicon octicon-link"></span></a>GetRxItem Response</h3>
+<a id="getrxitem-response" class="anchor" href="#getrxitem-response" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Response</h3>
 
 <p>If an Rx number is invalid, the webservice should return an RxItem containing the following values:</p>
 
@@ -73,22 +73,23 @@
 <li>Print - <em>Attribute</em> - Print message “true” or “false”. Attribute value ignored</li>
 </ul>
 </li>
-</ul><p><strong><em>All other elements are ignored/missing</em></strong></p>
+</ul>
+
+<p><strong><em>All other elements are ignored/missing</em></strong></p>
 
 <h4>
-<a name="example---rxitem-invalid" class="anchor" href="#example---rxitem-invalid"><span class="octicon octicon-link"></span></a>Example - RxItem Invalid</h4>
+<a id="example---rxitem-invalid" class="anchor" href="#example---rxitem-invalid" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example - RxItem Invalid</h4>
 
-<div class="highlight highlight-xml"><pre><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
-<span class="nt">&lt;RxItem</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:xsd=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span> <span class="na">xmlns=</span><span class="s">"http://services.Paladin POS.com/PaladinPharmacyCOMv1"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;RxNumber&gt;</span>Test Invalid Rx Item 1<span class="nt">&lt;/RxNumber&gt;</span>
-  <span class="nt">&lt;RxValid&gt;</span>false<span class="nt">&lt;/RxValid&gt;</span>
-  <span class="nt">&lt;RxAmountDue&gt;</span>0<span class="nt">&lt;/RxAmountDue&gt;</span>
-  <span class="nt">&lt;RxMessages&gt;</span>
-    <span class="nt">&lt;RxMessage</span> <span class="na">Message=</span><span class="s">"Item does not exist in the system!"</span> <span class="na">Print=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;/RxMessages&gt;</span>
-  <span class="nt">&lt;RxItemFlags</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/RxItem&gt;</span>
-</pre></div>
+<div class="highlight highlight-text-xml"><pre>&lt;?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>?&gt;
+&lt;<span class="pl-ent">RxItem</span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsi</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsd</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://services.Paladin POS.com/PaladinPharmacyCOMv1<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">RxNumber</span>&gt;Test Invalid Rx Item 1&lt;/<span class="pl-ent">RxNumber</span>&gt;
+  &lt;<span class="pl-ent">RxValid</span>&gt;false&lt;/<span class="pl-ent">RxValid</span>&gt;
+  &lt;<span class="pl-ent">RxAmountDue</span>&gt;0&lt;/<span class="pl-ent">RxAmountDue</span>&gt;
+  &lt;<span class="pl-ent">RxMessages</span>&gt;
+    &lt;<span class="pl-ent">RxMessage</span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>Item does not exist in the system!<span class="pl-pds">"</span></span> <span class="pl-e">Print</span>=<span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span> /&gt;
+  &lt;/<span class="pl-ent">RxMessages</span>&gt;
+  &lt;<span class="pl-ent">RxItemFlags</span> /&gt;
+&lt;/<span class="pl-ent">RxItem</span>&gt;</pre></div>
 
 <p>If an Rx number is valid, the webservice should return an RxItem containing the following values:</p>
 
@@ -130,31 +131,90 @@
 <li> Required - <em>Attribute</em> - Client flag condition is required to be accepted.</li>
 </ul>
 </li>
-</ul><h4>
-<a name="example---rxitem-valid" class="anchor" href="#example---rxitem-valid"><span class="octicon octicon-link"></span></a>Example - RxItem Valid</h4>
+</ul>
 
-<div class="highlight highlight-xml"><pre><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
-<span class="nt">&lt;RxItem</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:xsd=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span> <span class="na">xmlns=</span><span class="s">"http://services.Paladin POS.com/PaladinPharmacyCOMv1"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;RxNumber&gt;</span>123456789<span class="nt">&lt;/RxNumber&gt;</span>
-    <span class="nt">&lt;RxValid&gt;</span>true<span class="nt">&lt;/RxValid&gt;</span>
-    <span class="nt">&lt;RxCustomerName&gt;</span>Test Customer<span class="nt">&lt;/RxCustomerName&gt;</span>
-    <span class="nt">&lt;RxPatientID&gt;</span>111222333444555666<span class="nt">&lt;/RxPatientID&gt;</span>
-    <span class="nt">&lt;RxAmountDue&gt;</span>50.00<span class="nt">&lt;/RxAmountDue&gt;</span>
-    <span class="nt">&lt;RxTaxable&gt;</span>true<span class="nt">&lt;/RxTaxable&gt;</span>
-    <span class="nt">&lt;RxMessages&gt;</span>
-      <span class="nt">&lt;RxMessage</span> <span class="na">Message=</span><span class="s">"This item is a screen only message"</span> <span class="na">Print=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;RxMessage</span> <span class="na">Message=</span><span class="s">"This message is for everyone!"</span> <span class="na">Print=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/RxMessages&gt;</span>
-    <span class="nt">&lt;RxItemFlags&gt;</span>
-      <span class="nt">&lt;RxItemFlag</span> <span class="na">Type=</span><span class="s">"1"</span> <span class="na">Message=</span><span class="s">"HIPPA First Time Signature"</span> <span class="na">Required=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;RxItemFlag</span> <span class="na">Type=</span><span class="s">"2"</span> <span class="na">Message=</span><span class="s">"No Safety Cap on Rx"</span> <span class="na">Required=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;RxItemFlag</span> <span class="na">Type=</span><span class="s">"3"</span> <span class="na">Message=</span><span class="s">"Need Pharmacist Consult"</span> <span class="na">Required=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/RxItemFlags&gt;</span>
-<span class="nt">&lt;/RxItem&gt;</span>
-</pre></div>
+<h4>
+<a id="example---rxitem-valid" class="anchor" href="#example---rxitem-valid" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example - RxItem Valid</h4>
+
+<div class="highlight highlight-text-xml"><pre>&lt;?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>?&gt;
+&lt;<span class="pl-ent">RxItem</span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsi</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsd</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://services.Paladin POS.com/PaladinPharmacyCOMv1<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">RxNumber</span>&gt;123456789&lt;/<span class="pl-ent">RxNumber</span>&gt;
+    &lt;<span class="pl-ent">RxValid</span>&gt;true&lt;/<span class="pl-ent">RxValid</span>&gt;
+    &lt;<span class="pl-ent">RxCustomerName</span>&gt;Test Customer&lt;/<span class="pl-ent">RxCustomerName</span>&gt;
+    &lt;<span class="pl-ent">RxPatientID</span>&gt;111222333444555666&lt;/<span class="pl-ent">RxPatientID</span>&gt;
+    &lt;<span class="pl-ent">RxAmountDue</span>&gt;50.00&lt;/<span class="pl-ent">RxAmountDue</span>&gt;
+    &lt;<span class="pl-ent">RxTaxable</span>&gt;true&lt;/<span class="pl-ent">RxTaxable</span>&gt;
+    &lt;<span class="pl-ent">RxMessages</span>&gt;
+      &lt;<span class="pl-ent">RxMessage</span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>This item is a screen only message<span class="pl-pds">"</span></span> <span class="pl-e">Print</span>=<span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span> /&gt;
+      &lt;<span class="pl-ent">RxMessage</span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>This message is for everyone!<span class="pl-pds">"</span></span> <span class="pl-e">Print</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+    &lt;/<span class="pl-ent">RxMessages</span>&gt;
+    &lt;<span class="pl-ent">RxItemFlags</span>&gt;
+      &lt;<span class="pl-ent">RxItemFlag</span> <span class="pl-e">Type</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>HIPPA First Time Signature<span class="pl-pds">"</span></span> <span class="pl-e">Required</span>=<span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span> /&gt;
+      &lt;<span class="pl-ent">RxItemFlag</span> <span class="pl-e">Type</span>=<span class="pl-s"><span class="pl-pds">"</span>2<span class="pl-pds">"</span></span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>No Safety Cap on Rx<span class="pl-pds">"</span></span> <span class="pl-e">Required</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+      &lt;<span class="pl-ent">RxItemFlag</span> <span class="pl-e">Type</span>=<span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>Need Pharmacist Consult<span class="pl-pds">"</span></span> <span class="pl-e">Required</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+    &lt;/<span class="pl-ent">RxItemFlags</span>&gt;
+&lt;/<span class="pl-ent">RxItem</span>&gt;</pre></div>
 
 <h2>
-<a name="saverxinvoice-method" class="anchor" href="#saverxinvoice-method"><span class="octicon octicon-link"></span></a>SaveRxInvoice Method</h2>
+<a id="getrxitems-method" class="anchor" href="#getrxitems-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItems Method</h2>
+
+<p>This method functions the same as GetRxItem, but returns a list or array of RxItems back to Paladin POS from a single item number. This feature is enables support of “Bag Checkout”, where a single barcode represent multiple items, get scanned and all the contents of the “bag” will display on the POS invoice. 
+This method was added in v1.06 and is only called when option “Enable GetRxItems (Bag Checkout)” is enabled within Paladin. When enabled, GeRxItems will always be called instead of the original GetRxItem method.</p>
+
+<h3>
+<a id="getrxitem-request-1" class="anchor" href="#getrxitem-request-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Request</h3>
+
+<h3>
+<a id="getrxitem-response-1" class="anchor" href="#getrxitem-response-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Response</h3>
+
+<div class="highlight highlight-text-xml"><pre>&lt;?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>?&gt;
+&lt;<span class="pl-ent">ArrayOfRxItem</span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsi</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsd</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://services.paladinpos.com/PaladinPharmacyCOMv1<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">RxItem</span>&gt;
+    &lt;<span class="pl-ent">RxNumber</span>&gt;test-1&lt;/<span class="pl-ent">RxNumber</span>&gt;
+    &lt;<span class="pl-ent">RxValid</span>&gt;true&lt;/<span class="pl-ent">RxValid</span>&gt;
+    &lt;<span class="pl-ent">RxCustomerName</span>&gt;Test Customer&lt;/<span class="pl-ent">RxCustomerName</span>&gt;
+    &lt;<span class="pl-ent">RxPatientID</span>&gt;111222333444555666&lt;/<span class="pl-ent">RxPatientID</span>&gt;
+    &lt;<span class="pl-ent">RxCustomerRegAddress1</span>&gt;321 Bogus Ave.&lt;/<span class="pl-ent">RxCustomerRegAddress1</span>&gt;
+    &lt;<span class="pl-ent">RxCustomerRegCity</span>&gt;HomeTown&lt;/<span class="pl-ent">RxCustomerRegCity</span>&gt;
+    &lt;<span class="pl-ent">RxCustomerRegState</span>&gt;OK&lt;/<span class="pl-ent">RxCustomerRegState</span>&gt;
+    &lt;<span class="pl-ent">RxCustomerRegZIP</span>&gt;34567&lt;/<span class="pl-ent">RxCustomerRegZIP</span>&gt;
+    &lt;<span class="pl-ent">RxAmountDue</span>&gt;44.44&lt;/<span class="pl-ent">RxAmountDue</span>&gt;
+    &lt;<span class="pl-ent">RxTaxable</span>&gt;true&lt;/<span class="pl-ent">RxTaxable</span>&gt;
+    &lt;<span class="pl-ent">RxMessages</span>&gt;
+      &lt;<span class="pl-ent">RxMessage</span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>This item is a screen only message<span class="pl-pds">"</span></span> <span class="pl-e">Print</span>=<span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span>/&gt;
+      &lt;<span class="pl-ent">RxMessage</span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>This message is for everyone!<span class="pl-pds">"</span></span> <span class="pl-e">Print</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>/&gt;
+    &lt;/<span class="pl-ent">RxMessages</span>&gt;
+    &lt;<span class="pl-ent">RxItemFlags</span>&gt;
+      &lt;<span class="pl-ent">RxItemFlag</span> <span class="pl-e">Type</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>HIPPA First Time Signature<span class="pl-pds">"</span></span> <span class="pl-e">Required</span>=<span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span>/&gt;
+      &lt;<span class="pl-ent">RxItemFlag</span> <span class="pl-e">Type</span>=<span class="pl-s"><span class="pl-pds">"</span>2<span class="pl-pds">"</span></span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>No Safety Cap on Rx<span class="pl-pds">"</span></span> <span class="pl-e">Required</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>/&gt;
+      &lt;<span class="pl-ent">RxItemFlag</span> <span class="pl-e">Type</span>=<span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>Need Pharmacist Consult<span class="pl-pds">"</span></span> <span class="pl-e">Required</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>/&gt;
+    &lt;/<span class="pl-ent">RxItemFlags</span>&gt;
+  &lt;/<span class="pl-ent">RxItem</span>&gt;
+  &lt;<span class="pl-ent">RxItem</span>&gt;
+    &lt;<span class="pl-ent">RxNumber</span>&gt;test-1-2&lt;/<span class="pl-ent">RxNumber</span>&gt;
+    &lt;<span class="pl-ent">RxValid</span>&gt;true&lt;/<span class="pl-ent">RxValid</span>&gt;
+    &lt;<span class="pl-ent">RxCustomerName</span>&gt;Test Customer&lt;/<span class="pl-ent">RxCustomerName</span>&gt;
+    &lt;<span class="pl-ent">RxPatientID</span>&gt;111222333444555666&lt;/<span class="pl-ent">RxPatientID</span>&gt;
+    &lt;<span class="pl-ent">RxCustomerRegAddress1</span>&gt;321 Bogus Ave.&lt;/<span class="pl-ent">RxCustomerRegAddress1</span>&gt;
+    &lt;<span class="pl-ent">RxCustomerRegCity</span>&gt;HomeTown&lt;/<span class="pl-ent">RxCustomerRegCity</span>&gt;
+    &lt;<span class="pl-ent">RxCustomerRegState</span>&gt;OK&lt;/<span class="pl-ent">RxCustomerRegState</span>&gt;
+    &lt;<span class="pl-ent">RxCustomerRegZIP</span>&gt;34567&lt;/<span class="pl-ent">RxCustomerRegZIP</span>&gt;
+    &lt;<span class="pl-ent">RxAmountDue</span>&gt;44.44&lt;/<span class="pl-ent">RxAmountDue</span>&gt;
+    &lt;<span class="pl-ent">RxTaxable</span>&gt;true&lt;/<span class="pl-ent">RxTaxable</span>&gt;
+    &lt;<span class="pl-ent">RxMessages</span>&gt;
+      &lt;<span class="pl-ent">RxMessage</span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>This item is a screen only message<span class="pl-pds">"</span></span> <span class="pl-e">Print</span>=<span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span>/&gt;
+      &lt;<span class="pl-ent">RxMessage</span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>This message is for everyone!<span class="pl-pds">"</span></span> <span class="pl-e">Print</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>/&gt;
+    &lt;/<span class="pl-ent">RxMessages</span>&gt;
+    &lt;<span class="pl-ent">RxItemFlags</span>&gt;
+      &lt;<span class="pl-ent">RxItemFlag</span> <span class="pl-e">Type</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>HIPPA First Time Signature<span class="pl-pds">"</span></span> <span class="pl-e">Required</span>=<span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span>/&gt;
+      &lt;<span class="pl-ent">RxItemFlag</span> <span class="pl-e">Type</span>=<span class="pl-s"><span class="pl-pds">"</span>2<span class="pl-pds">"</span></span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>No Safety Cap on Rx<span class="pl-pds">"</span></span> <span class="pl-e">Required</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>/&gt;
+      &lt;<span class="pl-ent">RxItemFlag</span> <span class="pl-e">Type</span>=<span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>Need Pharmacist Consult<span class="pl-pds">"</span></span> <span class="pl-e">Required</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>/&gt;
+    &lt;/<span class="pl-ent">RxItemFlags</span>&gt;
+  &lt;/<span class="pl-ent">RxItem</span>&gt;
+&lt;/<span class="pl-ent">ArrayOfRxItem</span>&gt;</pre></div>
+
+<h2>
+<a id="saverxinvoice-method" class="anchor" href="#saverxinvoice-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SaveRxInvoice Method</h2>
 
 <p>When an invoice is completed in Paladin POS that contains RxItems, Paladin POS will return an RxInvoice containing basic invoice details as well as all of the RxItems that were sold as part of the transaction. 
 A RxInvoice contains the following values:</p>
@@ -229,57 +289,58 @@ A RxInvoice contains the following values:</p>
 </ul>
 </li>
 <li>Signature - Base64 encoding of JPEG signature. If not accepted, element will be empty/missing</li>
-</ul><h4>
-<a name="example--rxinvoice" class="anchor" href="#example--rxinvoice"><span class="octicon octicon-link"></span></a>Example – RxInvoice</h4>
+</ul>
 
-<div class="highlight highlight-xml"><pre><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
-<span class="nt">&lt;RxInvoice</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:xsd=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span> <span class="na">xmlns=</span><span class="s">"http://services.Paladin POS.com/PaladinPharmacyCOMv1"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;RxInvoiceNumber&gt;</span>9201923<span class="nt">&lt;/RxInvoiceNumber&gt;</span>
-  <span class="nt">&lt;RxInvoiceDate&gt;</span>2008-03-03T10:17:33.578125-08:00<span class="nt">&lt;/RxInvoiceDate&gt;</span>
-  <span class="nt">&lt;RxSubTotal&gt;</span>125.99<span class="nt">&lt;/RxSubTotal&gt;</span>
-  <span class="nt">&lt;RxTaxTotal&gt;</span>7.24<span class="nt">&lt;/RxTaxTotal&gt;</span>
-  <span class="nt">&lt;RxTotal&gt;</span>133.23<span class="nt">&lt;/RxTotal&gt;</span>
-  <span class="nt">&lt;RxItems&gt;</span>
-    <span class="nt">&lt;RxItem&gt;</span>
-      <span class="nt">&lt;RxNumber&gt;</span>TEST RX NUMBER<span class="nt">&lt;/RxNumber&gt;</span>
-      <span class="nt">&lt;RxValid&gt;</span>true<span class="nt">&lt;/RxValid&gt;</span>
-      <span class="nt">&lt;RxCustomerName&gt;</span>Test Customer 1<span class="nt">&lt;/RxCustomerName&gt;</span>
-      <span class="nt">&lt;RxAmountDue&gt;</span>50.00<span class="nt">&lt;/RxAmountDue&gt;</span>
-      <span class="nt">&lt;RxTaxable&gt;</span>false<span class="nt">&lt;/RxTaxable&gt;</span>
-      <span class="nt">&lt;RxMessages</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;RxItemFlags</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/RxItem&gt;</span>
-    <span class="nt">&lt;RxItem&gt;</span>
-      <span class="nt">&lt;RxNumber&gt;</span>OTHER RX NUMBER<span class="nt">&lt;/RxNumber&gt;</span>
-      <span class="nt">&lt;RxValid&gt;</span>true<span class="nt">&lt;/RxValid&gt;</span>
-      <span class="nt">&lt;RxCustomerName&gt;</span>Test Customer 1<span class="nt">&lt;/RxCustomerName&gt;</span>
-      <span class="nt">&lt;RxAmountDue&gt;</span>50.00<span class="nt">&lt;/RxAmountDue&gt;</span>
-      <span class="nt">&lt;RxTaxable&gt;</span>false<span class="nt">&lt;/RxTaxable&gt;</span>
-      <span class="nt">&lt;RxMessages</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;RxItemFlags</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/RxItem&gt;</span>
-  <span class="nt">&lt;/RxItems&gt;</span>
-  <span class="nt">&lt;RxPayments&gt;</span>
-    <span class="nt">&lt;RxPayment</span> <span class="na">Type=</span><span class="s">"1"</span> <span class="na">Amount=</span><span class="s">"20.25"</span> <span class="na">Message=</span><span class="s">"Cash"</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;/RxPayments&gt;</span>
-  <span class="nt">&lt;RxItemFlagResults&gt;</span>
-    <span class="nt">&lt;RxItemFlagResult</span> <span class="na">CustomerName=</span><span class="s">"Test Customer 1"</span> <span class="na">Type=</span><span class="s">"1"</span> <span class="na">Accepted=</span><span class="s">"true"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;Signature&gt;</span>/9j/4AAQSkZJRgigD/9k=<span class="nt">&lt;/Signature&gt;</span>
-    <span class="nt">&lt;/RxItemFlagResult&gt;</span>
-    <span class="nt">&lt;RxItemFlagResult</span> <span class="na">CustomerName=</span><span class="s">"Test Customer 1"</span> <span class="na">Type=</span><span class="s">"2"</span> <span class="na">Accepted=</span><span class="s">"true"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;Signature&gt;</span>/9j/4AAQSkZJRgABQB//Z<span class="nt">&lt;/Signature&gt;</span>
-    <span class="nt">&lt;/RxItemFlagResult&gt;</span>
-    <span class="nt">&lt;RxItemFlagResult</span> <span class="na">CustomerName=</span><span class="s">"Test Customer 1"</span> <span class="na">Type=</span><span class="s">"3"</span> <span class="na">Accepted=</span><span class="s">"true"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;Signature&gt;</span>/9j/KKAKKKACiiigD/9k=<span class="nt">&lt;/Signature&gt;</span>
-    <span class="nt">&lt;/RxItemFlagResult&gt;</span>
-  <span class="nt">&lt;/RxItemFlagResults&gt;</span>
-<span class="nt">&lt;/RxInvoice&gt;</span>
-</pre></div>
+<h4>
+<a id="example--rxinvoice" class="anchor" href="#example--rxinvoice" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example – RxInvoice</h4>
+
+<div class="highlight highlight-text-xml"><pre>&lt;?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>?&gt;
+&lt;<span class="pl-ent">RxInvoice</span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsi</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsd</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://services.Paladin POS.com/PaladinPharmacyCOMv1<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">RxInvoiceNumber</span>&gt;9201923&lt;/<span class="pl-ent">RxInvoiceNumber</span>&gt;
+  &lt;<span class="pl-ent">RxInvoiceDate</span>&gt;2008-03-03T10:17:33.578125-08:00&lt;/<span class="pl-ent">RxInvoiceDate</span>&gt;
+  &lt;<span class="pl-ent">RxSubTotal</span>&gt;125.99&lt;/<span class="pl-ent">RxSubTotal</span>&gt;
+  &lt;<span class="pl-ent">RxTaxTotal</span>&gt;7.24&lt;/<span class="pl-ent">RxTaxTotal</span>&gt;
+  &lt;<span class="pl-ent">RxTotal</span>&gt;133.23&lt;/<span class="pl-ent">RxTotal</span>&gt;
+  &lt;<span class="pl-ent">RxItems</span>&gt;
+    &lt;<span class="pl-ent">RxItem</span>&gt;
+      &lt;<span class="pl-ent">RxNumber</span>&gt;TEST RX NUMBER&lt;/<span class="pl-ent">RxNumber</span>&gt;
+      &lt;<span class="pl-ent">RxValid</span>&gt;true&lt;/<span class="pl-ent">RxValid</span>&gt;
+      &lt;<span class="pl-ent">RxCustomerName</span>&gt;Test Customer 1&lt;/<span class="pl-ent">RxCustomerName</span>&gt;
+      &lt;<span class="pl-ent">RxAmountDue</span>&gt;50.00&lt;/<span class="pl-ent">RxAmountDue</span>&gt;
+      &lt;<span class="pl-ent">RxTaxable</span>&gt;false&lt;/<span class="pl-ent">RxTaxable</span>&gt;
+      &lt;<span class="pl-ent">RxMessages</span> /&gt;
+      &lt;<span class="pl-ent">RxItemFlags</span> /&gt;
+    &lt;/<span class="pl-ent">RxItem</span>&gt;
+    &lt;<span class="pl-ent">RxItem</span>&gt;
+      &lt;<span class="pl-ent">RxNumber</span>&gt;OTHER RX NUMBER&lt;/<span class="pl-ent">RxNumber</span>&gt;
+      &lt;<span class="pl-ent">RxValid</span>&gt;true&lt;/<span class="pl-ent">RxValid</span>&gt;
+      &lt;<span class="pl-ent">RxCustomerName</span>&gt;Test Customer 1&lt;/<span class="pl-ent">RxCustomerName</span>&gt;
+      &lt;<span class="pl-ent">RxAmountDue</span>&gt;50.00&lt;/<span class="pl-ent">RxAmountDue</span>&gt;
+      &lt;<span class="pl-ent">RxTaxable</span>&gt;false&lt;/<span class="pl-ent">RxTaxable</span>&gt;
+      &lt;<span class="pl-ent">RxMessages</span> /&gt;
+      &lt;<span class="pl-ent">RxItemFlags</span> /&gt;
+    &lt;/<span class="pl-ent">RxItem</span>&gt;
+  &lt;/<span class="pl-ent">RxItems</span>&gt;
+  &lt;<span class="pl-ent">RxPayments</span>&gt;
+    &lt;<span class="pl-ent">RxPayment</span> <span class="pl-e">Type</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">Amount</span>=<span class="pl-s"><span class="pl-pds">"</span>20.25<span class="pl-pds">"</span></span> <span class="pl-e">Message</span>=<span class="pl-s"><span class="pl-pds">"</span>Cash<span class="pl-pds">"</span></span> /&gt;
+  &lt;/<span class="pl-ent">RxPayments</span>&gt;
+  &lt;<span class="pl-ent">RxItemFlagResults</span>&gt;
+    &lt;<span class="pl-ent">RxItemFlagResult</span> <span class="pl-e">CustomerName</span>=<span class="pl-s"><span class="pl-pds">"</span>Test Customer 1<span class="pl-pds">"</span></span> <span class="pl-e">Type</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">Accepted</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">Signature</span>&gt;/9j/4AAQSkZJRgigD/9k=&lt;/<span class="pl-ent">Signature</span>&gt;
+    &lt;/<span class="pl-ent">RxItemFlagResult</span>&gt;
+    &lt;<span class="pl-ent">RxItemFlagResult</span> <span class="pl-e">CustomerName</span>=<span class="pl-s"><span class="pl-pds">"</span>Test Customer 1<span class="pl-pds">"</span></span> <span class="pl-e">Type</span>=<span class="pl-s"><span class="pl-pds">"</span>2<span class="pl-pds">"</span></span> <span class="pl-e">Accepted</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">Signature</span>&gt;/9j/4AAQSkZJRgABQB//Z&lt;/<span class="pl-ent">Signature</span>&gt;
+    &lt;/<span class="pl-ent">RxItemFlagResult</span>&gt;
+    &lt;<span class="pl-ent">RxItemFlagResult</span> <span class="pl-e">CustomerName</span>=<span class="pl-s"><span class="pl-pds">"</span>Test Customer 1<span class="pl-pds">"</span></span> <span class="pl-e">Type</span>=<span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span> <span class="pl-e">Accepted</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">Signature</span>&gt;/9j/KKAKKKACiiigD/9k=&lt;/<span class="pl-ent">Signature</span>&gt;
+    &lt;/<span class="pl-ent">RxItemFlagResult</span>&gt;
+  &lt;/<span class="pl-ent">RxItemFlagResults</span>&gt;
+&lt;/<span class="pl-ent">RxInvoice</span>&gt;</pre></div>
 
 <p><strong><em>Signature values shortened for example</em></strong></p>
 
 <h2>
-<a name="getavailablecredit-method" class="anchor" href="#getavailablecredit-method"><span class="octicon octicon-link"></span></a>GetAvailableCredit Method</h2>
+<a id="getavailablecredit-method" class="anchor" href="#getavailablecredit-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetAvailableCredit Method</h2>
 
 <p><strong><em>Note: Added v1.03. 
 Method is only called when option “Enable Customer Available Credit” is enabled within Paladin POS. This option disables AR in Paladin POS to be managed solely by the pharmacy system.</em></strong></p>
@@ -287,20 +348,19 @@ Method is only called when option “Enable Customer Available Credit” is enab
 <p>When an invoice customer is changed within the system, a request for that customer’s available credit will be made. The response from the pharmacy system will determine if a customer can charge to their store credit account maintained by the pharmacy system.</p>
 
 <h3>
-<a name="getavailablecredit-request" class="anchor" href="#getavailablecredit-request"><span class="octicon octicon-link"></span></a>GetAvailableCredit Request</h3>
+<a id="getavailablecredit-request" class="anchor" href="#getavailablecredit-request" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetAvailableCredit Request</h3>
 
 <p>When enabled, Paladin POS will call GetAvailableCredit on pharmacy system using the customer’s pharmacy system id.</p>
 
 <h4>
-<a name="example---getavailablecredit-request" class="anchor" href="#example---getavailablecredit-request"><span class="octicon octicon-link"></span></a>Example - GetAvailableCredit Request</h4>
+<a id="example---getavailablecredit-request" class="anchor" href="#example---getavailablecredit-request" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example - GetAvailableCredit Request</h4>
 
-<div class="highlight highlight-xml"><pre><span class="nt">&lt;GetAvailableCredit</span> <span class="na">xmlns=</span><span class="s">"http://services.paladinpos.com/PaladinPharmacyCOMv1"</span><span class="nt">&gt;</span> 
-  <span class="nt">&lt;customerId&gt;</span>111222333444555666<span class="nt">&lt;/customerId&gt;</span> 
-<span class="nt">&lt;/GetAvailableCredit&gt;</span>
-</pre></div>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">GetAvailableCredit</span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://services.paladinpos.com/PaladinPharmacyCOMv1<span class="pl-pds">"</span></span>&gt; 
+  &lt;<span class="pl-ent">customerId</span>&gt;111222333444555666&lt;/<span class="pl-ent">customerId</span>&gt; 
+&lt;/<span class="pl-ent">GetAvailableCredit</span>&gt;</pre></div>
 
 <h3>
-<a name="getavailablecredit-response" class="anchor" href="#getavailablecredit-response"><span class="octicon octicon-link"></span></a>GetAvailableCredit Response</h3>
+<a id="getavailablecredit-response" class="anchor" href="#getavailablecredit-response" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetAvailableCredit Response</h3>
 
 <p>The pharmacy system should return a AvailableCreditResponse message back to Paladin POS. The response from the pharmacy should specify if the customer lookup was successful and/or if the customer has any credit to allow charging locally.
 As of version 1.05, the available credit response also returns the account balance to allow paladin to display current account information and accept payment on customer accounts on behalf of the pharmacy system.</p>
@@ -324,32 +384,32 @@ As of version 1.05, the available credit response also returns the account balan
 <li><em>Note: If account has a credit balance, AccountBalance should be return a negative value</em></li>
 </ul>
 </li>
-</ul><h4>
-<a name="example--availablecreditresponse-invalid" class="anchor" href="#example--availablecreditresponse-invalid"><span class="octicon octicon-link"></span></a>Example – AvailableCreditResponse Invalid</h4>
-
-<div class="highlight highlight-xml"><pre><span class="nt">&lt;AvailableCreditResponse&gt;</span> 
-  <span class="nt">&lt;CustomerId&gt;</span>111222333444555666<span class="nt">&lt;/CustomerId&gt;</span> 
-  <span class="nt">&lt;IsValid&gt;</span>false<span class="nt">&lt;/IsValid&gt;</span> 
-  <span class="nt">&lt;Message&gt;</span>Customer not found<span class="nt">&lt;/Message&gt;</span> 
-  <span class="nt">&lt;AvailableCredit&gt;</span>0<span class="nt">&lt;/AvailableCredit&gt;</span> 
-  <span class="nt">&lt;AccountBalance&gt;</span>0<span class="nt">&lt;/AccountBalance&gt;</span> 
-<span class="nt">&lt;/AvailableCreditResponse&gt;</span> 
-</pre></div>
+</ul>
 
 <h4>
-<a name="example--availablecreditresponse-valid" class="anchor" href="#example--availablecreditresponse-valid"><span class="octicon octicon-link"></span></a>Example – AvailableCreditResponse Valid</h4>
+<a id="example--availablecreditresponse-invalid" class="anchor" href="#example--availablecreditresponse-invalid" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example – AvailableCreditResponse Invalid</h4>
 
-<div class="highlight highlight-xml"><pre><span class="nt">&lt;AvailableCreditResponse&gt;</span> 
-  <span class="nt">&lt;CustomerId&gt;</span>111222333444555666<span class="nt">&lt;/CustomerId&gt;</span> 
-  <span class="nt">&lt;IsValid&gt;</span>true<span class="nt">&lt;/IsValid&gt;</span> 
-  <span class="nt">&lt;Message&gt;</span>success<span class="nt">&lt;/Message&gt;</span> 
-  <span class="nt">&lt;AvailableCredit&gt;</span>213.35<span class="nt">&lt;/AvailableCredit&gt;</span> 
-  <span class="nt">&lt;AccountBalance&gt;</span>100.00<span class="nt">&lt;/AccountBalance&gt;</span> 
-<span class="nt">&lt;/AvailableCreditResponse&gt;</span> 
-</pre></div>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">AvailableCreditResponse</span>&gt; 
+  &lt;<span class="pl-ent">CustomerId</span>&gt;111222333444555666&lt;/<span class="pl-ent">CustomerId</span>&gt; 
+  &lt;<span class="pl-ent">IsValid</span>&gt;false&lt;/<span class="pl-ent">IsValid</span>&gt; 
+  &lt;<span class="pl-ent">Message</span>&gt;Customer not found&lt;/<span class="pl-ent">Message</span>&gt; 
+  &lt;<span class="pl-ent">AvailableCredit</span>&gt;0&lt;/<span class="pl-ent">AvailableCredit</span>&gt; 
+  &lt;<span class="pl-ent">AccountBalance</span>&gt;0&lt;/<span class="pl-ent">AccountBalance</span>&gt; 
+&lt;/<span class="pl-ent">AvailableCreditResponse</span>&gt; </pre></div>
+
+<h4>
+<a id="example--availablecreditresponse-valid" class="anchor" href="#example--availablecreditresponse-valid" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example – AvailableCreditResponse Valid</h4>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">AvailableCreditResponse</span>&gt; 
+  &lt;<span class="pl-ent">CustomerId</span>&gt;111222333444555666&lt;/<span class="pl-ent">CustomerId</span>&gt; 
+  &lt;<span class="pl-ent">IsValid</span>&gt;true&lt;/<span class="pl-ent">IsValid</span>&gt; 
+  &lt;<span class="pl-ent">Message</span>&gt;success&lt;/<span class="pl-ent">Message</span>&gt; 
+  &lt;<span class="pl-ent">AvailableCredit</span>&gt;213.35&lt;/<span class="pl-ent">AvailableCredit</span>&gt; 
+  &lt;<span class="pl-ent">AccountBalance</span>&gt;100.00&lt;/<span class="pl-ent">AccountBalance</span>&gt; 
+&lt;/<span class="pl-ent">AvailableCreditResponse</span>&gt; </pre></div>
 
 <h2>
-<a name="saveinvoice-method" class="anchor" href="#saveinvoice-method"><span class="octicon octicon-link"></span></a>SaveInvoice Method</h2>
+<a id="saveinvoice-method" class="anchor" href="#saveinvoice-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SaveInvoice Method</h2>
 
 <p>**_Note: Added v1.03. 
 This method is only called when option “Enable Send Full Invoice” is enabled within Paladin. This options disables PaladinPOS calls to SaveRxInvoice, and sends all invoices processed be the pharmacy system.</p>
@@ -496,156 +556,152 @@ This method is only called when option “Enable Send Full Invoice” is enabled
 <li>Signature - byte[]/empty - Base64 encoding of signature. If not accepted, element will be empty/missing</li>
 </ul>
 </li>
-</ul><h4>
-<a name="example--saveinvoice-request" class="anchor" href="#example--saveinvoice-request"><span class="octicon octicon-link"></span></a>Example – SaveInvoice Request</h4>
+</ul>
 
-<div class="highlight highlight-xml"><pre><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
-<span class="nt">&lt;SaveInvoice</span> <span class="na">xmlns=</span><span class="s">"http://services.paladinpos.com/PaladinPharmacyCOMv1"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;invoice&gt;</span>
-    <span class="nt">&lt;Id&gt;</span>28841<span class="nt">&lt;/Id&gt;</span>
-    <span class="nt">&lt;Deleted&gt;</span>false<span class="nt">&lt;/Deleted&gt;</span>
-    <span class="nt">&lt;Number&gt;</span>28841<span class="nt">&lt;/Number&gt;</span>
-    <span class="nt">&lt;Date&gt;</span>2013-11-22T13:16:51.384<span class="nt">&lt;/Date&gt;</span>
-    <span class="nt">&lt;AccountNumber&gt;</span>2332<span class="nt">&lt;/AccountNumber&gt;</span>
-    <span class="nt">&lt;AccountName&gt;</span>Test Customer<span class="nt">&lt;/AccountName&gt;</span>
-    <span class="nt">&lt;PharmacyAccountNumber&gt;</span>111222333444555666<span class="nt">&lt;/PharmacyAccountNumber&gt;</span>
-    <span class="nt">&lt;AccountTracker&gt;</span>0<span class="nt">&lt;/AccountTracker&gt;</span>
-    <span class="nt">&lt;TerminalNumber&gt;</span>4<span class="nt">&lt;/TerminalNumber&gt;</span>
-    <span class="nt">&lt;EmployeeNumber&gt;</span>1<span class="nt">&lt;/EmployeeNumber&gt;</span>
-    <span class="nt">&lt;PurchaseOrderNumber</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;Total&gt;</span>47.77<span class="nt">&lt;/Total&gt;</span>
-    <span class="nt">&lt;Profit&gt;</span>44.44<span class="nt">&lt;/Profit&gt;</span>
-    <span class="nt">&lt;PromptPaymentDiscount&gt;</span>0<span class="nt">&lt;/PromptPaymentDiscount&gt;</span>
-    <span class="nt">&lt;GlobalTax&gt;</span>true<span class="nt">&lt;/GlobalTax&gt;</span>
-    <span class="nt">&lt;GlobalNet&gt;</span>false<span class="nt">&lt;/GlobalNet&gt;</span>
-    <span class="nt">&lt;GlobalDefective&gt;</span>false<span class="nt">&lt;/GlobalDefective&gt;</span>
-    <span class="nt">&lt;DefaultTaxOverride&gt;</span>false<span class="nt">&lt;/DefaultTaxOverride&gt;</span>
-    <span class="nt">&lt;InvoiceType&gt;</span>0<span class="nt">&lt;/InvoiceType&gt;</span>
-    <span class="nt">&lt;Signature&gt;</span>R0lGODlhkAGAAPcAAAAAAAAAMwAAZgAAmQAAzAAA/TYMkfFMWEQVByJXc7UqEpvdIzemlvlbCMpSxhExAAOw==<span class="nt">&lt;/Signature&gt;</span>
-    <span class="nt">&lt;FlexTotal</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;StoreId</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;CustomerRewardNumber&gt;</span>111222333444555666<span class="nt">&lt;/CustomerRewardNumber&gt;</span>
-    <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;InvoiceItems&gt;</span>
-      <span class="nt">&lt;InvoiceItem&gt;</span>
-        <span class="nt">&lt;InvoiceId&gt;</span>28841<span class="nt">&lt;/InvoiceId&gt;</span>
-        <span class="nt">&lt;LineNumber&gt;</span>1<span class="nt">&lt;/LineNumber&gt;</span>
-        <span class="nt">&lt;InventoryId&gt;</span>-2147483648<span class="nt">&lt;/InventoryId&gt;</span>
-        <span class="nt">&lt;Date&gt;</span>2013-11-22T13:16:51.384<span class="nt">&lt;/Date&gt;</span>
-        <span class="nt">&lt;PartNumber&gt;</span>123456<span class="nt">&lt;/PartNumber&gt;</span>
-        <span class="nt">&lt;Description&gt;</span>Pharmacy Item 123456<span class="nt">&lt;/Description&gt;</span>
-        <span class="nt">&lt;PrimaryNumber</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;DepartmentId&gt;</span>10020<span class="nt">&lt;/DepartmentId&gt;</span>
-        <span class="nt">&lt;QuantitySold&gt;</span>1<span class="nt">&lt;/QuantitySold&gt;</span>
-        <span class="nt">&lt;ReorderQuantity&gt;</span>0<span class="nt">&lt;/ReorderQuantity&gt;</span>
-        <span class="nt">&lt;RetailPrice&gt;</span>44.44<span class="nt">&lt;/RetailPrice&gt;</span>
-        <span class="nt">&lt;SellPrice&gt;</span>44.44<span class="nt">&lt;/SellPrice&gt;</span>
-        <span class="nt">&lt;SoldPrice&gt;</span>44.44<span class="nt">&lt;/SoldPrice&gt;</span>
-        <span class="nt">&lt;SellThreshold&gt;</span>0<span class="nt">&lt;/SellThreshold&gt;</span>
-        <span class="nt">&lt;Taxable&gt;</span>true<span class="nt">&lt;/Taxable&gt;</span>
-        <span class="nt">&lt;Net&gt;</span>false<span class="nt">&lt;/Net&gt;</span>
-        <span class="nt">&lt;Defective&gt;</span>false<span class="nt">&lt;/Defective&gt;</span>
-        <span class="nt">&lt;LineExt&gt;</span>44.44<span class="nt">&lt;/LineExt&gt;</span>
-        <span class="nt">&lt;PromptPaymentDiscount&gt;</span>0<span class="nt">&lt;/PromptPaymentDiscount&gt;</span>
-        <span class="nt">&lt;Profit&gt;</span>44.44<span class="nt">&lt;/Profit&gt;</span>
-        <span class="nt">&lt;CostPerUnit&gt;</span>0<span class="nt">&lt;/CostPerUnit&gt;</span>
-        <span class="nt">&lt;CostLineExt&gt;</span>0<span class="nt">&lt;/CostLineExt&gt;</span>
-        <span class="nt">&lt;PriceType</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;PricingPlanId&gt;</span>0<span class="nt">&lt;/PricingPlanId&gt;</span>
-        <span class="nt">&lt;SaleId&gt;</span>0<span class="nt">&lt;/SaleId&gt;</span>
-        <span class="nt">&lt;SupplierId1&gt;</span>-1<span class="nt">&lt;/SupplierId1&gt;</span>
-        <span class="nt">&lt;SupplierId2&gt;</span>-1<span class="nt">&lt;/SupplierId2&gt;</span>
-        <span class="nt">&lt;ClassId1&gt;</span>-1<span class="nt">&lt;/ClassId1&gt;</span>
-        <span class="nt">&lt;SubclassId1&gt;</span>-1<span class="nt">&lt;/SubclassId1&gt;</span>
-        <span class="nt">&lt;ClassId2&gt;</span>-1<span class="nt">&lt;/ClassId2&gt;</span>
-        <span class="nt">&lt;SubclassId2&gt;</span>-1<span class="nt">&lt;/SubclassId2&gt;</span>
-        <span class="nt">&lt;ClassId3&gt;</span>-1<span class="nt">&lt;/ClassId3&gt;</span>
-        <span class="nt">&lt;SubclassId3&gt;</span>-1<span class="nt">&lt;/SubclassId3&gt;</span>
-        <span class="nt">&lt;FlexItem&gt;</span>true<span class="nt">&lt;/FlexItem&gt;</span>
-        <span class="nt">&lt;StoreId</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;RxItem&gt;</span>true<span class="nt">&lt;/RxItem&gt;</span>
-      <span class="nt">&lt;/InvoiceItem&gt;</span>
-    <span class="nt">&lt;/InvoiceItems&gt;</span>
-    <span class="nt">&lt;InvoiceText&gt;</span>
-      <span class="nt">&lt;InvoiceText&gt;</span>
-        <span class="nt">&lt;InvoiceId&gt;</span>28841<span class="nt">&lt;/InvoiceId&gt;</span>
-        <span class="nt">&lt;LineNumber&gt;</span>2<span class="nt">&lt;/LineNumber&gt;</span>
-        <span class="nt">&lt;Value&gt;</span>This message is for everyone!<span class="nt">&lt;/Value&gt;</span>
-        <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;/InvoiceText&gt;</span>
-    <span class="nt">&lt;/InvoiceText&gt;</span>
-    <span class="nt">&lt;InvoicePayments&gt;</span>
-      <span class="nt">&lt;InvoicePayment&gt;</span>
-        <span class="nt">&lt;InvoiceId&gt;</span>28841<span class="nt">&lt;/InvoiceId&gt;</span>
-        <span class="nt">&lt;LineNumber&gt;</span>3<span class="nt">&lt;/LineNumber&gt;</span>
-        <span class="nt">&lt;Date&gt;</span>2013-11-22T13:16:51.384<span class="nt">&lt;/Date&gt;</span>
-        <span class="nt">&lt;Type&gt;</span>2<span class="nt">&lt;/Type&gt;</span>
-        <span class="nt">&lt;Amount&gt;</span>47.77<span class="nt">&lt;/Amount&gt;</span>
-        <span class="nt">&lt;Data&gt;</span><span class="ni">&amp;lt;</span>Charge<span class="ni">&amp;gt;</span>
-<span class="ni">&amp;lt;</span>AccountNumber<span class="ni">&amp;gt;</span>2332<span class="ni">&amp;lt;</span>/AccountNumber<span class="ni">&amp;gt;</span>
-<span class="ni">&amp;lt;</span>Name /<span class="ni">&amp;gt;</span>
-<span class="ni">&amp;lt;</span>Memo /<span class="ni">&amp;gt;</span>
-<span class="ni">&amp;lt;</span>/Charge<span class="ni">&amp;gt;</span><span class="nt">&lt;/Data&gt;</span>
-        <span class="nt">&lt;SaleId</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;/InvoicePayment&gt;</span>
-    <span class="nt">&lt;/InvoicePayments&gt;</span>
-    <span class="nt">&lt;InvoiceTaxes&gt;</span>
-      <span class="nt">&lt;InvoiceTax&gt;</span>
-        <span class="nt">&lt;Id&gt;</span>83878<span class="nt">&lt;/Id&gt;</span>
-        <span class="nt">&lt;InvoiceId&gt;</span>28841<span class="nt">&lt;/InvoiceId&gt;</span>
-        <span class="nt">&lt;Name&gt;</span>Florida Sales Tax<span class="nt">&lt;/Name&gt;</span>
-        <span class="nt">&lt;Type&gt;</span>1<span class="nt">&lt;/Type&gt;</span>
-        <span class="nt">&lt;Rate&gt;</span>7.5<span class="nt">&lt;/Rate&gt;</span>
-        <span class="nt">&lt;Amount&gt;</span>3.33<span class="nt">&lt;/Amount&gt;</span>
-        <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;/InvoiceTax&gt;</span>
-      <span class="nt">&lt;InvoiceTax&gt;</span>
-        <span class="nt">&lt;Id&gt;</span>83879<span class="nt">&lt;/Id&gt;</span>
-        <span class="nt">&lt;InvoiceId&gt;</span>28841<span class="nt">&lt;/InvoiceId&gt;</span>
-        <span class="nt">&lt;Name&gt;</span>None<span class="nt">&lt;/Name&gt;</span>
-        <span class="nt">&lt;Type&gt;</span>2<span class="nt">&lt;/Type&gt;</span>
-        <span class="nt">&lt;Rate&gt;</span>0<span class="nt">&lt;/Rate&gt;</span>
-        <span class="nt">&lt;Amount&gt;</span>0<span class="nt">&lt;/Amount&gt;</span>
-        <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;/InvoiceTax&gt;</span>
-      <span class="nt">&lt;InvoiceTax&gt;</span>
-        <span class="nt">&lt;Id&gt;</span>83880<span class="nt">&lt;/Id&gt;</span>
-        <span class="nt">&lt;InvoiceId&gt;</span>28841<span class="nt">&lt;/InvoiceId&gt;</span>
-        <span class="nt">&lt;Name&gt;</span>None<span class="nt">&lt;/Name&gt;</span>
-        <span class="nt">&lt;Type&gt;</span>3<span class="nt">&lt;/Type&gt;</span>
-        <span class="nt">&lt;Rate&gt;</span>0<span class="nt">&lt;/Rate&gt;</span>
-        <span class="nt">&lt;Amount&gt;</span>0<span class="nt">&lt;/Amount&gt;</span>
-        <span class="nt">&lt;Categories</span> <span class="na">xsi:nil=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;/InvoiceTax&gt;</span>
-    <span class="nt">&lt;/InvoiceTaxes&gt;</span>
-    <span class="nt">&lt;InvoiceRxItemFlags&gt;</span>
-      <span class="nt">&lt;InvoiceRxItemFlag&gt;</span>
-        <span class="nt">&lt;CustomerId&gt;</span>111222333444555666<span class="nt">&lt;/CustomerId&gt;</span>
-        <span class="nt">&lt;CustomerName&gt;</span>Test Customer<span class="nt">&lt;/CustomerName&gt;</span>
-        <span class="nt">&lt;Type&gt;</span>1<span class="nt">&lt;/Type&gt;</span>
-        <span class="nt">&lt;Accepted&gt;</span>true<span class="nt">&lt;/Accepted&gt;</span>
-        <span class="nt">&lt;Signature&gt;</span>R0lGODlhkAGAAPcAAAAAAAAAMwAAZgAAmQAAzAAA/lbCMpSxhExAAOw==<span class="nt">&lt;/Signature&gt;</span>
-      <span class="nt">&lt;/InvoiceRxItemFlag&gt;</span>
-    <span class="nt">&lt;/InvoiceRxItemFlags&gt;</span>
-  <span class="nt">&lt;/invoice&gt;</span>
-<span class="nt">&lt;/SaveInvoice&gt;</span>
-</pre></div>
+<h4>
+<a id="example--saveinvoice-request" class="anchor" href="#example--saveinvoice-request" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example – SaveInvoice Request</h4>
+
+<div class="highlight highlight-text-xml"><pre>&lt;?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>?&gt;
+&lt;<span class="pl-ent">SaveInvoice</span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://services.paladinpos.com/PaladinPharmacyCOMv1<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">invoice</span>&gt;
+    &lt;<span class="pl-ent">Id</span>&gt;28841&lt;/<span class="pl-ent">Id</span>&gt;
+    &lt;<span class="pl-ent">Deleted</span>&gt;false&lt;/<span class="pl-ent">Deleted</span>&gt;
+    &lt;<span class="pl-ent">Number</span>&gt;28841&lt;/<span class="pl-ent">Number</span>&gt;
+    &lt;<span class="pl-ent">Date</span>&gt;2013-11-22T13:16:51.384&lt;/<span class="pl-ent">Date</span>&gt;
+    &lt;<span class="pl-ent">AccountNumber</span>&gt;2332&lt;/<span class="pl-ent">AccountNumber</span>&gt;
+    &lt;<span class="pl-ent">AccountName</span>&gt;Test Customer&lt;/<span class="pl-ent">AccountName</span>&gt;
+    &lt;<span class="pl-ent">PharmacyAccountNumber</span>&gt;111222333444555666&lt;/<span class="pl-ent">PharmacyAccountNumber</span>&gt;
+    &lt;<span class="pl-ent">AccountTracker</span>&gt;0&lt;/<span class="pl-ent">AccountTracker</span>&gt;
+    &lt;<span class="pl-ent">TerminalNumber</span>&gt;4&lt;/<span class="pl-ent">TerminalNumber</span>&gt;
+    &lt;<span class="pl-ent">EmployeeNumber</span>&gt;1&lt;/<span class="pl-ent">EmployeeNumber</span>&gt;
+    &lt;<span class="pl-ent">PurchaseOrderNumber</span> /&gt;
+    &lt;<span class="pl-ent">Total</span>&gt;47.77&lt;/<span class="pl-ent">Total</span>&gt;
+    &lt;<span class="pl-ent">Profit</span>&gt;44.44&lt;/<span class="pl-ent">Profit</span>&gt;
+    &lt;<span class="pl-ent">PromptPaymentDiscount</span>&gt;0&lt;/<span class="pl-ent">PromptPaymentDiscount</span>&gt;
+    &lt;<span class="pl-ent">GlobalTax</span>&gt;true&lt;/<span class="pl-ent">GlobalTax</span>&gt;
+    &lt;<span class="pl-ent">GlobalNet</span>&gt;false&lt;/<span class="pl-ent">GlobalNet</span>&gt;
+    &lt;<span class="pl-ent">GlobalDefective</span>&gt;false&lt;/<span class="pl-ent">GlobalDefective</span>&gt;
+    &lt;<span class="pl-ent">DefaultTaxOverride</span>&gt;false&lt;/<span class="pl-ent">DefaultTaxOverride</span>&gt;
+    &lt;<span class="pl-ent">InvoiceType</span>&gt;0&lt;/<span class="pl-ent">InvoiceType</span>&gt;
+    &lt;<span class="pl-ent">Signature</span>&gt;R0lGODlhkAGAAPcAAAAAAAAAMwAAZgAAmQAAzAAA/TYMkfFMWEQVByJXc7UqEpvdIzemlvlbCMpSxhExAAOw==&lt;/<span class="pl-ent">Signature</span>&gt;
+    &lt;<span class="pl-ent">FlexTotal</span> <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">nil</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">StoreId</span> <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">nil</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">CustomerRewardNumber</span>&gt;111222333444555666&lt;/<span class="pl-ent">CustomerRewardNumber</span>&gt;
+    &lt;<span class="pl-ent">Categories</span> <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">nil</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">InvoiceItems</span>&gt;
+      &lt;<span class="pl-ent">InvoiceItem</span>&gt;
+        &lt;<span class="pl-ent">InvoiceId</span>&gt;28841&lt;/<span class="pl-ent">InvoiceId</span>&gt;
+        &lt;<span class="pl-ent">LineNumber</span>&gt;1&lt;/<span class="pl-ent">LineNumber</span>&gt;
+        &lt;<span class="pl-ent">InventoryId</span>&gt;-2147483648&lt;/<span class="pl-ent">InventoryId</span>&gt;
+        &lt;<span class="pl-ent">Date</span>&gt;2013-11-22T13:16:51.384&lt;/<span class="pl-ent">Date</span>&gt;
+        &lt;<span class="pl-ent">PartNumber</span>&gt;123456&lt;/<span class="pl-ent">PartNumber</span>&gt;
+        &lt;<span class="pl-ent">Description</span>&gt;Pharmacy Item 123456&lt;/<span class="pl-ent">Description</span>&gt;
+        &lt;<span class="pl-ent">PrimaryNumber</span> /&gt;
+        &lt;<span class="pl-ent">DepartmentId</span>&gt;10020&lt;/<span class="pl-ent">DepartmentId</span>&gt;
+        &lt;<span class="pl-ent">QuantitySold</span>&gt;1&lt;/<span class="pl-ent">QuantitySold</span>&gt;
+        &lt;<span class="pl-ent">ReorderQuantity</span>&gt;0&lt;/<span class="pl-ent">ReorderQuantity</span>&gt;
+        &lt;<span class="pl-ent">RetailPrice</span>&gt;44.44&lt;/<span class="pl-ent">RetailPrice</span>&gt;
+        &lt;<span class="pl-ent">SellPrice</span>&gt;44.44&lt;/<span class="pl-ent">SellPrice</span>&gt;
+        &lt;<span class="pl-ent">SoldPrice</span>&gt;44.44&lt;/<span class="pl-ent">SoldPrice</span>&gt;
+        &lt;<span class="pl-ent">SellThreshold</span>&gt;0&lt;/<span class="pl-ent">SellThreshold</span>&gt;
+        &lt;<span class="pl-ent">Taxable</span>&gt;true&lt;/<span class="pl-ent">Taxable</span>&gt;
+        &lt;<span class="pl-ent">Net</span>&gt;false&lt;/<span class="pl-ent">Net</span>&gt;
+        &lt;<span class="pl-ent">Defective</span>&gt;false&lt;/<span class="pl-ent">Defective</span>&gt;
+        &lt;<span class="pl-ent">LineExt</span>&gt;44.44&lt;/<span class="pl-ent">LineExt</span>&gt;
+        &lt;<span class="pl-ent">PromptPaymentDiscount</span>&gt;0&lt;/<span class="pl-ent">PromptPaymentDiscount</span>&gt;
+        &lt;<span class="pl-ent">Profit</span>&gt;44.44&lt;/<span class="pl-ent">Profit</span>&gt;
+        &lt;<span class="pl-ent">CostPerUnit</span>&gt;0&lt;/<span class="pl-ent">CostPerUnit</span>&gt;
+        &lt;<span class="pl-ent">CostLineExt</span>&gt;0&lt;/<span class="pl-ent">CostLineExt</span>&gt;
+        &lt;<span class="pl-ent">PriceType</span> <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">nil</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+        &lt;<span class="pl-ent">PricingPlanId</span>&gt;0&lt;/<span class="pl-ent">PricingPlanId</span>&gt;
+        &lt;<span class="pl-ent">SaleId</span>&gt;0&lt;/<span class="pl-ent">SaleId</span>&gt;
+        &lt;<span class="pl-ent">SupplierId1</span>&gt;-1&lt;/<span class="pl-ent">SupplierId1</span>&gt;
+        &lt;<span class="pl-ent">SupplierId2</span>&gt;-1&lt;/<span class="pl-ent">SupplierId2</span>&gt;
+        &lt;<span class="pl-ent">ClassId1</span>&gt;-1&lt;/<span class="pl-ent">ClassId1</span>&gt;
+        &lt;<span class="pl-ent">SubclassId1</span>&gt;-1&lt;/<span class="pl-ent">SubclassId1</span>&gt;
+        &lt;<span class="pl-ent">ClassId2</span>&gt;-1&lt;/<span class="pl-ent">ClassId2</span>&gt;
+        &lt;<span class="pl-ent">SubclassId2</span>&gt;-1&lt;/<span class="pl-ent">SubclassId2</span>&gt;
+        &lt;<span class="pl-ent">ClassId3</span>&gt;-1&lt;/<span class="pl-ent">ClassId3</span>&gt;
+        &lt;<span class="pl-ent">SubclassId3</span>&gt;-1&lt;/<span class="pl-ent">SubclassId3</span>&gt;
+        &lt;<span class="pl-ent">FlexItem</span>&gt;true&lt;/<span class="pl-ent">FlexItem</span>&gt;
+        &lt;<span class="pl-ent">StoreId</span> <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">nil</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+        &lt;<span class="pl-ent">Categories</span> <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">nil</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+        &lt;<span class="pl-ent">RxItem</span>&gt;true&lt;/<span class="pl-ent">RxItem</span>&gt;
+      &lt;/<span class="pl-ent">InvoiceItem</span>&gt;
+    &lt;/<span class="pl-ent">InvoiceItems</span>&gt;
+    &lt;<span class="pl-ent">InvoiceText</span>&gt;
+      &lt;<span class="pl-ent">InvoiceText</span>&gt;
+        &lt;<span class="pl-ent">InvoiceId</span>&gt;28841&lt;/<span class="pl-ent">InvoiceId</span>&gt;
+        &lt;<span class="pl-ent">LineNumber</span>&gt;2&lt;/<span class="pl-ent">LineNumber</span>&gt;
+        &lt;<span class="pl-ent">Value</span>&gt;This message is for everyone!&lt;/<span class="pl-ent">Value</span>&gt;
+        &lt;<span class="pl-ent">Categories</span> <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">nil</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+      &lt;/<span class="pl-ent">InvoiceText</span>&gt;
+    &lt;/<span class="pl-ent">InvoiceText</span>&gt;
+    &lt;<span class="pl-ent">InvoicePayments</span>&gt;
+      &lt;<span class="pl-ent">InvoicePayment</span>&gt;
+        &lt;<span class="pl-ent">InvoiceId</span>&gt;28841&lt;/<span class="pl-ent">InvoiceId</span>&gt;
+        &lt;<span class="pl-ent">LineNumber</span>&gt;3&lt;/<span class="pl-ent">LineNumber</span>&gt;
+        &lt;<span class="pl-ent">Date</span>&gt;2013-11-22T13:16:51.384&lt;/<span class="pl-ent">Date</span>&gt;
+        &lt;<span class="pl-ent">Type</span>&gt;2&lt;/<span class="pl-ent">Type</span>&gt;
+        &lt;<span class="pl-ent">Amount</span>&gt;47.77&lt;/<span class="pl-ent">Amount</span>&gt;
+        &lt;<span class="pl-ent">Data</span>&gt;<span class="pl-c1">&amp;lt;</span>Charge<span class="pl-c1">&amp;gt;</span>
+<span class="pl-c1">&amp;lt;</span>AccountNumber<span class="pl-c1">&amp;gt;</span>2332<span class="pl-c1">&amp;lt;</span>/AccountNumber<span class="pl-c1">&amp;gt;</span>
+<span class="pl-c1">&amp;lt;</span>Name /<span class="pl-c1">&amp;gt;</span>
+<span class="pl-c1">&amp;lt;</span>Memo /<span class="pl-c1">&amp;gt;</span>
+<span class="pl-c1">&amp;lt;</span>/Charge<span class="pl-c1">&amp;gt;</span>&lt;/<span class="pl-ent">Data</span>&gt;
+        &lt;<span class="pl-ent">SaleId</span> <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">nil</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+        &lt;<span class="pl-ent">Categories</span> <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">nil</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+      &lt;/<span class="pl-ent">InvoicePayment</span>&gt;
+    &lt;/<span class="pl-ent">InvoicePayments</span>&gt;
+    &lt;<span class="pl-ent">InvoiceTaxes</span>&gt;
+      &lt;<span class="pl-ent">InvoiceTax</span>&gt;
+        &lt;<span class="pl-ent">Id</span>&gt;83878&lt;/<span class="pl-ent">Id</span>&gt;
+        &lt;<span class="pl-ent">InvoiceId</span>&gt;28841&lt;/<span class="pl-ent">InvoiceId</span>&gt;
+        &lt;<span class="pl-ent">Name</span>&gt;Florida Sales Tax&lt;/<span class="pl-ent">Name</span>&gt;
+        &lt;<span class="pl-ent">Type</span>&gt;1&lt;/<span class="pl-ent">Type</span>&gt;
+        &lt;<span class="pl-ent">Rate</span>&gt;7.5&lt;/<span class="pl-ent">Rate</span>&gt;
+        &lt;<span class="pl-ent">Amount</span>&gt;3.33&lt;/<span class="pl-ent">Amount</span>&gt;
+        &lt;<span class="pl-ent">Categories</span> <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">nil</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+      &lt;/<span class="pl-ent">InvoiceTax</span>&gt;
+      &lt;<span class="pl-ent">InvoiceTax</span>&gt;
+        &lt;<span class="pl-ent">Id</span>&gt;83879&lt;/<span class="pl-ent">Id</span>&gt;
+        &lt;<span class="pl-ent">InvoiceId</span>&gt;28841&lt;/<span class="pl-ent">InvoiceId</span>&gt;
+        &lt;<span class="pl-ent">Name</span>&gt;None&lt;/<span class="pl-ent">Name</span>&gt;
+        &lt;<span class="pl-ent">Type</span>&gt;2&lt;/<span class="pl-ent">Type</span>&gt;
+        &lt;<span class="pl-ent">Rate</span>&gt;0&lt;/<span class="pl-ent">Rate</span>&gt;
+        &lt;<span class="pl-ent">Amount</span>&gt;0&lt;/<span class="pl-ent">Amount</span>&gt;
+        &lt;<span class="pl-ent">Categories</span> <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">nil</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+      &lt;/<span class="pl-ent">InvoiceTax</span>&gt;
+      &lt;<span class="pl-ent">InvoiceTax</span>&gt;
+        &lt;<span class="pl-ent">Id</span>&gt;83880&lt;/<span class="pl-ent">Id</span>&gt;
+        &lt;<span class="pl-ent">InvoiceId</span>&gt;28841&lt;/<span class="pl-ent">InvoiceId</span>&gt;
+        &lt;<span class="pl-ent">Name</span>&gt;None&lt;/<span class="pl-ent">Name</span>&gt;
+        &lt;<span class="pl-ent">Type</span>&gt;3&lt;/<span class="pl-ent">Type</span>&gt;
+        &lt;<span class="pl-ent">Rate</span>&gt;0&lt;/<span class="pl-ent">Rate</span>&gt;
+        &lt;<span class="pl-ent">Amount</span>&gt;0&lt;/<span class="pl-ent">Amount</span>&gt;
+        &lt;<span class="pl-ent">Categories</span> <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">nil</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+      &lt;/<span class="pl-ent">InvoiceTax</span>&gt;
+    &lt;/<span class="pl-ent">InvoiceTaxes</span>&gt;
+    &lt;<span class="pl-ent">InvoiceRxItemFlags</span>&gt;
+      &lt;<span class="pl-ent">InvoiceRxItemFlag</span>&gt;
+        &lt;<span class="pl-ent">CustomerId</span>&gt;111222333444555666&lt;/<span class="pl-ent">CustomerId</span>&gt;
+        &lt;<span class="pl-ent">CustomerName</span>&gt;Test Customer&lt;/<span class="pl-ent">CustomerName</span>&gt;
+        &lt;<span class="pl-ent">Type</span>&gt;1&lt;/<span class="pl-ent">Type</span>&gt;
+        &lt;<span class="pl-ent">Accepted</span>&gt;true&lt;/<span class="pl-ent">Accepted</span>&gt;
+        &lt;<span class="pl-ent">Signature</span>&gt;R0lGODlhkAGAAPcAAAAAAAAAMwAAZgAAmQAAzAAA/lbCMpSxhExAAOw==&lt;/<span class="pl-ent">Signature</span>&gt;
+      &lt;/<span class="pl-ent">InvoiceRxItemFlag</span>&gt;
+    &lt;/<span class="pl-ent">InvoiceRxItemFlags</span>&gt;
+  &lt;/<span class="pl-ent">invoice</span>&gt;
+&lt;/<span class="pl-ent">SaveInvoice</span>&gt;</pre></div>
 
 <p><strong><em>Signature values shortened for example</em></strong></p>
       </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">PharmacyCOMv1 maintained by <a href="https://github.com/PaladinPOS">PaladinPOS</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/PaladinPOS">PaladinPOS</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
-
+    <script src="javascripts/scale.fix.js"></script>
     
-
   </body>
 </html>
