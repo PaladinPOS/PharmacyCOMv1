@@ -1,33 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>PharmacyCOMv1 by PaladinPOS</title>
+    <meta name="description" content="PharmacyCOMv1 : PaladinPOS Pharmacy Integration Service Definition">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>PharmacyCOMv1</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>PharmacyCOMv1</h1>
-        <p>PaladinPOS Pharmacy Integration Service Definition</p>
 
-        <p class="view"><a href="https://github.com/PaladinPOS/PharmacyCOMv1">View the Project on GitHub <small>PaladinPOS/PharmacyCOMv1</small></a></p>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/PaladinPOS/PharmacyCOMv1">View on GitHub</a>
 
+          <h1 id="project_title">PharmacyCOMv1</h1>
+          <h2 id="project_tagline">PaladinPOS Pharmacy Integration Service Definition</h2>
 
-        <ul>
-          <li><a href="https://github.com/PaladinPOS/PharmacyCOMv1/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/PaladinPOS/PharmacyCOMv1/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/PaladinPOS/PharmacyCOMv1">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/PaladinPOS/PharmacyCOMv1/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/PaladinPOS/PharmacyCOMv1/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h1>
 <a id="about" class="anchor" href="#about" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ABOUT</h1>
 
@@ -56,10 +59,10 @@
 <p>Allows Paladin POS to query the pharmacy system for a specific Rx number. During checkout, Paladin POS will call the pharmacy webservice GetRxItem in order to try to find the part number entered into the system. The pharmacy service implementation should respond back to paladin indicating that the item was invalid (not found) or valid (found). </p>
 
 <h3>
-<a id="getrxitem-request" class="anchor" href="#getrxitem-request" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Request</h3>
+<a id="getrxitems-request" class="anchor" href="#getrxitems-request" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItems Request</h3>
 
 <h3>
-<a id="getrxitem-response" class="anchor" href="#getrxitem-response" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Response</h3>
+<a id="getrxitems-response" class="anchor" href="#getrxitems-response" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItems Response</h3>
 
 <p>If an Rx number is invalid, the webservice should return an RxItem containing the following values:</p>
 
@@ -162,10 +165,10 @@
 This method was added in v1.06 and is only called when option “Enable GetRxItems (Bag Checkout)” is enabled within Paladin. When enabled, GeRxItems will always be called instead of the original GetRxItem method.</p>
 
 <h3>
-<a id="getrxitem-request-1" class="anchor" href="#getrxitem-request-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Request</h3>
+<a id="getrxitem-request" class="anchor" href="#getrxitem-request" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Request</h3>
 
 <h3>
-<a id="getrxitem-response-1" class="anchor" href="#getrxitem-response-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Response</h3>
+<a id="getrxitem-response" class="anchor" href="#getrxitem-response" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Response</h3>
 
 <div class="highlight highlight-text-xml"><pre>&lt;?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>?&gt;
 &lt;<span class="pl-ent">ArrayOfRxItem</span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsi</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsd</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://services.paladinpos.com/PaladinPharmacyCOMv1<span class="pl-pds">"</span></span>&gt;
@@ -696,12 +699,17 @@ This method is only called when option “Enable Send Full Invoice” is enabled
 
 <p><strong><em>Signature values shortened for example</em></strong></p>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/PaladinPOS">PaladinPOS</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">PharmacyCOMv1 maintained by <a href="https://github.com/PaladinPOS">PaladinPOS</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
     
+
   </body>
 </html>
