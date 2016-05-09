@@ -59,10 +59,10 @@
 <p>Allows Paladin POS to query the pharmacy system for a specific Rx number. During checkout, Paladin POS will call the pharmacy webservice GetRxItem in order to try to find the part number entered into the system. The pharmacy service implementation should respond back to paladin indicating that the item was invalid (not found) or valid (found). </p>
 
 <h3>
-<a id="getrxitems-request" class="anchor" href="#getrxitems-request" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItems Request</h3>
+<a id="getrxitem-request" class="anchor" href="#getrxitem-request" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Request</h3>
 
 <h3>
-<a id="getrxitems-response" class="anchor" href="#getrxitems-response" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItems Response</h3>
+<a id="getrxitem-response" class="anchor" href="#getrxitem-response" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Response</h3>
 
 <p>If an Rx number is invalid, the webservice should return an RxItem containing the following values:</p>
 
@@ -165,10 +165,10 @@
 This method was added in v1.06 and is only called when option “Enable GetRxItems (Bag Checkout)” is enabled within Paladin. When enabled, GeRxItems will always be called instead of the original GetRxItem method.</p>
 
 <h3>
-<a id="getrxitem-request" class="anchor" href="#getrxitem-request" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Request</h3>
+<a id="getrxitems-request" class="anchor" href="#getrxitems-request" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItems Request</h3>
 
 <h3>
-<a id="getrxitem-response" class="anchor" href="#getrxitem-response" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItem Response</h3>
+<a id="getrxitems-response" class="anchor" href="#getrxitems-response" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GetRxItems Response</h3>
 
 <div class="highlight highlight-text-xml"><pre>&lt;?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>?&gt;
 &lt;<span class="pl-ent">ArrayOfRxItem</span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsi</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsd</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://services.paladinpos.com/PaladinPharmacyCOMv1<span class="pl-pds">"</span></span>&gt;
