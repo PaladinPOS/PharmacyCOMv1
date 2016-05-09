@@ -96,9 +96,9 @@ If an Rx number is valid, the webservice should return an RxItem containing the 
 This method functions the same as GetRxItem, but returns a list or array of RxItems back to Paladin POS from a single item number. This feature is enables support of “Bag Checkout”, where a single barcode represent multiple items, get scanned and all the contents of the “bag” will display on the POS invoice. 
 This method was added in v1.06 and is only called when option “Enable GetRxItems (Bag Checkout)” is enabled within Paladin. When enabled, GeRxItems will always be called instead of the original GetRxItem method.
 
-### GetRxItem Request
+### GetRxItems Request
 
-### GetRxItem Response
+### GetRxItems Response
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfRxItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://services.paladinpos.com/PaladinPharmacyCOMv1">
