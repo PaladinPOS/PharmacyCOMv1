@@ -12,172 +12,119 @@ namespace PaladinPharmacyCOMv1.Models
         //---------------------------------------------------------------------------------------------------------
         //---------------------------------------------------------------------------------------------------------
 
-        private string m_rxNumber;
-        private string m_rxCustomerName;
-        private bool m_rxValid;
-        private decimal m_rxAmtDue;
-        private bool m_rxTaxable;
-        private List<RxMessage> m_rxMessages = new List<RxMessage>();
-        private List<RxItemFlag> m_rxItemFlags = new List<RxItemFlag>();
-
-        //2010.08.06 - KH: New Fields added to service for customer data
-        private string m_rxCustomerFName;
-        private string m_rxCustomerMName;
-        private string m_rxCustomerLName;
-        private string m_rxPatientID;
-        private string m_rxCustomerPhone1;
-        private string m_rxCustomerRegAddress1;
-        private string m_rxCustomerRegAddress2;
-        private string m_rxCustomerRegCity;
-        private string m_rxCustomerRegState;
-        private string m_rxCustomerRegZIP;
-
-        //---------------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------------
-
-        public string RxNumber
-        {
-            get { return m_rxNumber; }
-            set { m_rxNumber = value; }
-        }
+        public string RxNumber { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
-        public bool RxValid
-        {
-            get { return m_rxValid; }
-            set { m_rxValid = value; }
-        }
+        public bool RxValid { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
-        public string RxCustomerName
-        {
-            get { return m_rxCustomerName; }
-            set { m_rxCustomerName = value; }
-        }
+        public string RxCustomerName { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
         /// <remarks/>
-        public string RxCustomerFName
-        {
-            get { return m_rxCustomerFName; }
-            set { m_rxCustomerFName = value; }
-        }
+        public string RxCustomerFName { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
         /// <remarks/>
-        public string RxCustomerMName
-        {
-            get { return m_rxCustomerMName; }
-            set { m_rxCustomerMName = value; }
-        }
+        public string RxCustomerMName { get; set; }
+        //---------------------------------------------------------------------------------------------------------
+
+        /// <remarks/>
+        public string RxCustomerLName { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
         /// <remarks/>
-        public string RxCustomerLName
-        {
-            get { return m_rxCustomerLName; }
-            set { m_rxCustomerLName = value; }
-        }
+        public string RxPatientID { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
         /// <remarks/>
-        public string RxPatientID
-        {
-            get { return m_rxPatientID; }
-            set { m_rxPatientID = value; }
-        }
+        public string RxCustomerPhone1 { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
         /// <remarks/>
-        public string RxCustomerPhone1
-        {
-            get { return m_rxCustomerPhone1; }
-            set { m_rxCustomerPhone1 = value; }
-        }
+        public string RxCustomerPhone2 { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
         /// <remarks/>
-        public string RxCustomerRegAddress1
-        {
-            get { return m_rxCustomerRegAddress1; }
-            set { m_rxCustomerRegAddress1 = value; }
-        }
+        public string RxCustomerEmail1 { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
         /// <remarks/>
-        public string RxCustomerRegAddress2
-        {
-            get { return m_rxCustomerRegAddress2; }
-            set { m_rxCustomerRegAddress2 = value; }
-        }
+        public string RxCustomerEmail2 { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
         /// <remarks/>
-        public string RxCustomerRegCity
-        {
-            get { return m_rxCustomerRegCity; }
-            set { m_rxCustomerRegCity = value; }
-        }
+        public string RxCustomerRegAddress1 { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
         /// <remarks/>
-        public string RxCustomerRegState
-        {
-            get { return m_rxCustomerRegState; }
-            set { m_rxCustomerRegState = value; }
-        }
+        public string RxCustomerRegAddress2 { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
         /// <remarks/>
-        public string RxCustomerRegZIP
-        {
-            get { return m_rxCustomerRegZIP; }
-            set { m_rxCustomerRegZIP = value; }
-        }
+        public string RxCustomerRegCity { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
-        public decimal RxAmountDue
-        {
-            get { return m_rxAmtDue; }
-            set { m_rxAmtDue = value; }
-        }
+        /// <remarks/>
+        public string RxCustomerRegState { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
-        public bool RxTaxable
-        {
-            get { return m_rxTaxable; }
-            set { m_rxTaxable = value; }
-        }
+        /// <remarks/>
+        public string RxCustomerRegZIP { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
-        public List<RxMessage> RxMessages
-        {
-            get { return m_rxMessages; }
-            set { m_rxMessages = value; }
-        }
+        /// <remarks/>
+        public string RxCustomerDeliveryAddress1 { get; set; }
 
         //---------------------------------------------------------------------------------------------------------
 
-        public List<RxItemFlag> RxItemFlags
-        {
-            get { return m_rxItemFlags; }
-            set { m_rxItemFlags = value; }
-        }
+        /// <remarks/>
+        public string RxCustomerDeliveryAddress2 { get; set; }
+
+        //---------------------------------------------------------------------------------------------------------
+
+        /// <remarks/>
+        public string RxCustomerDeliveryCity { get; set; }
+
+        //---------------------------------------------------------------------------------------------------------
+
+        /// <remarks/>
+        public string RxCustomerDeliveryState { get; set; }
+        //---------------------------------------------------------------------------------------------------------
+
+        /// <remarks/>
+        public string RxCustomerDeliveryZIP { get; set; }
+
+        //---------------------------------------------------------------------------------------------------------
+
+        public decimal RxAmountDue { get; set; }
+
+        //---------------------------------------------------------------------------------------------------------
+
+        public bool RxTaxable { get; set; }
+
+        //---------------------------------------------------------------------------------------------------------
+
+        public List<RxMessage> RxMessages { get; set; } = new List<RxMessage>();
+
+        //---------------------------------------------------------------------------------------------------------
+
+        public List<RxItemFlag> RxItemFlags { get; set; } = new List<RxItemFlag>();
 
         //---------------------------------------------------------------------------------------------------------
         //---------------------------------------------------------------------------------------------------------

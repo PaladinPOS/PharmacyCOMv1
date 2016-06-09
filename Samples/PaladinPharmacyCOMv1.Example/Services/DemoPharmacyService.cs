@@ -58,6 +58,17 @@ namespace PaladinPharmacyCOMv1.Example.Services
             item.RxCustomerRegState = "OK";
             item.RxCustomerRegZIP = "34567";
 
+            ////test new fields for v1.07
+            //item.RxCustomerPhone1 = "5411234567";
+            //item.RxCustomerPhone2 = "5419876543";
+            //item.RxCustomerEmail1 = "email1@paladinpos.com";
+            //item.RxCustomerEmail2 = "email2@paladinpos.com";
+            //item.RxCustomerDeliveryAddress1 = "54321 Main St.";
+            //item.RxCustomerDeliveryAddress2 = "ATTN: Billy";
+            //item.RxCustomerDeliveryCity = "Dallas";
+            //item.RxCustomerDeliveryState = "TX";
+            //item.RxCustomerDeliveryZIP = "12345";
+            
             item.RxMessages.Add(new RxMessage("This item is a screen only message"));
             item.RxMessages.Add(new RxMessage("This message is for everyone!", true));
 

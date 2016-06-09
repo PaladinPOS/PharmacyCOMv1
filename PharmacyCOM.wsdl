@@ -26,11 +26,19 @@
           <s:element minOccurs="0" maxOccurs="1" name="RxCustomerLName" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="RxPatientID" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="RxCustomerPhone1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerPhone2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerEmail1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerEmail2" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="RxCustomerRegAddress1" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="RxCustomerRegAddress2" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="RxCustomerRegCity" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="RxCustomerRegState" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="RxCustomerRegZIP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerDeliveryAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerDeliveryAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerDeliveryCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerDeliveryState" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RxCustomerDeliveryZIP" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="RxAmountDue" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="RxTaxable" type="s:boolean" />
           <s:element minOccurs="0" maxOccurs="1" name="RxMessages" type="tns:ArrayOfRxMessage" />

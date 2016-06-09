@@ -52,11 +52,19 @@ If an Rx number is valid, the webservice should return an RxItem containing the 
 *	RxCustomerLName - _optional_ - Customer last name
 *	RxPatientID - _optional_ - Customer ID from pharmacy system
 *	RxCustomerPhone1 - _optional_ - Customer phone number
+* RxCustomerPhone2 - _optional_ - Customer phone number (added v1.07)
+* RxCustomerEmail1 - _optional_ - Customer email address (added v1.07)
+* RxCustomerEmail2 - _optional_ - Customer email address (added v1.07)
 *	RxCustomerRegAddress1 - _optional_ - Customer address line 1
 *	RxCustomerRegAddress2 - _optional_ - Customer address line 2
 *	RxCustomerRegCity - _optional_ - Customer city
 *	RxCustomerRegState - _optional_ - Customer state
 *	RxCustomerRegZIP - _optional_ - Customer zip
+* RxCustomerDeliveryAddress1 - _optional_ - Customer delivery address line 1 (added v1.07)
+* RxCustomerDeliveryAddress2 - _optional_ - Customer delivery address line 2 (added v1.07)
+* RxCustomerDeliveryCity - _optional_ - Customer delivery city (added v1.07)
+* RxCustomerDeliveryState - _optional_ - Customer delvery state (added v1.07)
+* RxCustomerDeliveryZIP - _optional_ - Customer delivery zip (added v1.07)
 *	RxAmountDue - Total price to charge customer for item.
 *	RxTaxable - Charge tax for this item. “true” or “false”.
 *	RxMessages - Containing any number of RxMessage entries.
