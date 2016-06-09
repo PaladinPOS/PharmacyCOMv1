@@ -63,7 +63,7 @@ If an Rx number is valid, the webservice should return an RxItem containing the 
 * RxCustomerDeliveryAddress1 - _optional_ - Customer delivery address line 1 (added v1.07)
 * RxCustomerDeliveryAddress2 - _optional_ - Customer delivery address line 2 (added v1.07)
 * RxCustomerDeliveryCity - _optional_ - Customer delivery city (added v1.07)
-* RxCustomerDeliveryState - _optional_ - Customer delvery state (added v1.07)
+* RxCustomerDeliveryState - _optional_ - Customer delivery state (added v1.07)
 * RxCustomerDeliveryZIP - _optional_ - Customer delivery zip (added v1.07)
 *	RxAmountDue - Total price to charge customer for item.
 *	RxTaxable - Charge tax for this item. “true” or “false”.
