@@ -557,5 +557,9 @@ An Invoice contains the following fields:
   </invoice>
 </SaveInvoice>
 ```
+# PharmacyCOM Encryption
+The project PaladinPharmacyCOMv1.Encryption can be used to encrypt message traffic. The encryption is done via a SOAP extension method which can be
+enabled via your project Web.Config (see Sample project). An encryption password is defined in the SOAP extension. This can be changed if desired but
+must be coordinated with Paladin. Also must be coordinated with Paladin whether encryption is enabled or disabled.
 
 **_Signature values shortened for example_**
